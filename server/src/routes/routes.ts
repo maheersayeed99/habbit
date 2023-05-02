@@ -3,9 +3,10 @@ import { Response, Request } from "express";
 
 const router = express.Router()
 
-router.get("/test", (req: Request, res : Response) => {
+router.post('/test', (req: Request, res : Response) => {
+    console.log(Object.keys(req));
     console.log(req.body);
-    res.json(req.body);
+    res.send(req.body);
 })
 
 
