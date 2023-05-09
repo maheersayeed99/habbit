@@ -12,8 +12,10 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.listen(4000);
 console.log("nodemon working");
+
 app.use("/api", router);
 
+ 
 app.get("/", (req, res) => {
 
     res.send("hello sad");
