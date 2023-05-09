@@ -26,7 +26,36 @@ class daily_status_model{
 
     static update_entry = (curr_activity :string) => {
 
-        var current_query = `UPDATE daily_status SET progress = progress + 1, streak = progress WHERE activity = '${curr_activity}';`;
+        var current_query = `UPDATE daily_status 
+                            SET progress = progress + 1 
+                            WHERE activity = '${curr_activity}' 
+                            AND progress < frequency;
+                            
+                            UPDATE daily_status
+                            SET completed = true
+                            WHERE activity = '${curr_activity}'
+                            AND progress = frequency;
+                            `;
+        console.log(current_query);
+        return pool.query(current_query)
+        .then((result : Pool_Query)=> {
+            console.log("query successful");
+            return result.rows;
+        })
+        .catch((error : Error )=> {
+            console.log(error.message);
+            return error;
+        });
+    }
+
+
+
+    static clean_all = () => {
+
+        var current_query = `UPDATE daily_status 
+                            SET progress = 0,
+                                completed = false
+                            `;
         console.log(current_query);
         return pool.query(current_query)
         .then((result : Pool_Query)=> {

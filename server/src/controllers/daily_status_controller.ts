@@ -68,9 +68,25 @@ const update_progress = (req: Request, res: Response) => {
 }
 
 
+const clean_table = (req: Request, res: Response) => {
+    return new Promise((resolve, reject) => {
+        resolve(daily_status_model.clean_all());
+    })
+    .then((result) => {
+        console.log("Done");
+        res.json(result)
+    })
+
+    .catch((error) => {
+        console.log(error);
+        return error;
+    })
+}
+
 
 
 
 
 export {test};
-export {update_progress}
+export {update_progress};
+export {clean_table};
