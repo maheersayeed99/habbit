@@ -26,6 +26,8 @@ class daily_status_model{
 
     static update_entry = (curr_activity :string) => {
 
+        curr_activity = curr_activity.toLowerCase();
+
         var current_query = `UPDATE daily_status 
                             SET progress = progress + 1 
                             WHERE activity = '${curr_activity}' 
