@@ -1,7 +1,10 @@
 import { pool } from "../../database/database"
+interface Pool_Object {
+    activity: string;
 
+} 
 interface Pool_Query {
-    rows : Map<string, string>
+    rows : Array<Pool_Object>
 }
 
 
@@ -50,13 +53,50 @@ class daily_status_model{
         });
     }
 
+    static get_todo = () => {
+        var current_query = `SELECT * FROM daily_status WHERE completed = false;`;
+
+        console.log(current_query)
+
+        return pool.query(current_query)
+        .then((result : Pool_Query) => {
+            console.log("query successful");
+            const todo_array = new Array<string>;
+            result.rows.forEach((element) => {
+                todo_array.push(element.activity);
+            })
+
+            return todo_array;
+        })
+        .catch((error : Error) => {
+            console.log(error);
+            console.log(error.message);
+        })
+    }
+
+    static get_completed = () => {
+        var current_query = `SELECT * FROM daily_status WHERE completed = true;`;
+
+        console.log(current_query)
+
+        return pool.query(current_query)
+        .then((result : Pool_Query) => {
+            console.log("query successful");
+            return result.rows;
+        })
+        .catch((error : Error) => {
+            console.log(error);
+            console.log(error.message);
+        })
+    }
+
 
 
     static clean_all = () => {
 
         var current_query = `UPDATE daily_status 
                             SET progress = 0,
-                                completed = false
+                                completed = false;
                             `;
         console.log(current_query);
         return pool.query(current_query)

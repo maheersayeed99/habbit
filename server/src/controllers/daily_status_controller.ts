@@ -44,9 +44,22 @@ const test = (req: Request, res : Response) => {
         res.json(error);
         return error;
     })
-    
-    
+}
 
+
+const get_todo = (req: Request, res : Response) => {
+    return new Promise((resolve, reject) => {
+        resolve(daily_status_model.get_todo());
+    })
+    .then((result) => {
+        res.send(result);
+        return Promise.resolve(result);
+    })
+    .catch((error)=>{
+        console.log("error")
+        res.json(error);
+        return error;
+    })
 }
 
 const update_progress = (req: Request, res: Response) => {
@@ -90,3 +103,4 @@ const clean_table = (req: Request, res: Response) => {
 export {test};
 export {update_progress};
 export {clean_table};
+export {get_todo};

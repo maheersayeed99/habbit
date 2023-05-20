@@ -1,6 +1,6 @@
 import express from "express";
 import { Response, Request } from "express";
-import { test, update_progress, clean_table } from "../controllers/daily_status_controller";
+import { test, update_progress, clean_table, get_todo } from "../controllers/daily_status_controller";
 
 const router = express.Router()
 
@@ -12,6 +12,6 @@ router.post('/test', (req: Request, res : Response) => {
 
 router.post('/update', update_progress);
 router.post('/clean', clean_table);
-
+router.get('/todo', get_todo);
 
 export {router}
