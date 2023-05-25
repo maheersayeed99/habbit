@@ -73,10 +73,10 @@ class daily_status_model{
             const todo_array = new Array<string>;
             result.rows.forEach((element) => {
                 if (element.frequency == 1){
-                    todo_array.push(element.activity);
+                    todo_array.push(element.activity + "     .");
                 }
                 else {
-                    todo_array.push(element.activity + " " + element.progress + " out of " + element.frequency);
+                    todo_array.push(element.activity + " " + element.progress + " out of " + element.frequency + "     .");
                 }
             })
 
