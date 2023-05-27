@@ -12,7 +12,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "pg": "^8.10.0",
-    "ts-node": "^10.9.1"
+    "pg": "^8.10.0"
   }
 }
