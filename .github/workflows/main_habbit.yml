@@ -23,7 +23,7 @@ jobs:
 
       - name: npm install, build, and start
         run: |
-          npm install -g
+          npm install
           npm install pg
           npm install ts-node --save-dev
           npm install typescript -g 
