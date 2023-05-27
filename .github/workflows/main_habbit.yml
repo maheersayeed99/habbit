@@ -24,6 +24,7 @@ jobs:
       - name: npm install, start, and build
         run: |
           npm install
+          npm install nodemon
           npm run build --if-present
           npm run start
       
