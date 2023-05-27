@@ -4,15 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server/src/index.ts",
-    "build": "tsc",
-    "deploy" : "ts-node server/src/index.ts"
+    "start_local": "ts-node server/src/index.ts",
+    "start": "node js_files/server/src/index.js",
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "pg": "^8.10.0"
+    "pg": "^8.10.0",
+    "ts-node": "^10.9.1"  
   }
 }

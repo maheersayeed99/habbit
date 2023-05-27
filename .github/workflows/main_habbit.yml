@@ -29,7 +29,7 @@ jobs:
           npm install typescript -g 
           npm install typescript --save-dev
           npm run build
-          npm run deploy
+          npm run start_local
       
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
