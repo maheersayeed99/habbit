@@ -21,11 +21,12 @@ jobs:
         with:
           node-version: '18.x'
 
-      - name: npm install, start, and build
+      - name: npm install, and start
         run: |
           npm install
+          npm install pg
+          npm install ts-node
           npm install nodemon
-          npm run build --if-present
           npm run start
       
       - name: Upload artifact for deployment job
