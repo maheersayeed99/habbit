@@ -25,7 +25,9 @@ jobs:
         run: |
           npm install
           npm install pg
-          npm install ts-node
+          npm install ts-node --save-dev
+          npm install typescript -g 
+          npm install typescript --save-dev
           npm run deploy
       
       - name: Upload artifact for deployment job
