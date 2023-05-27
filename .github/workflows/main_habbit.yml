@@ -28,6 +28,7 @@ jobs:
           npm install ts-node --save-dev
           npm install typescript -g 
           npm install typescript --save-dev
+          npm run build
           npm run deploy
       
       - name: Upload artifact for deployment job
