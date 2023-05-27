@@ -26,8 +26,7 @@ jobs:
           npm install
           npm install pg
           npm install ts-node
-          npm install nodemon
-          npm run start
+          npm run deploy
       
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
