@@ -18,6 +18,7 @@ const pool = new Pool({
     user: 'habbit',
     password: 'Baba313104',
     database: 'habbit',
+    port: 5432,
     max : 10,
     connectionTimeoutMillis : 0,
     idleTimeoutMillis : 0
