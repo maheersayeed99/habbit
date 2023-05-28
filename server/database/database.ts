@@ -13,6 +13,11 @@ const {Pool} = require('pg');
 //     idleTimeoutMillis : 0
 // });
 
+const host = 'habbit.postgres.database.azure.com';
+const user = 'habbit';
+const password = 'Baba313104';
+const database = 'habbit_db'
+
 const pool = new Pool({
     // host: 'habbit.postgres.database.azure.com',
     // user: 'habbit',
@@ -21,15 +26,33 @@ const pool = new Pool({
     // port: 5432,
 
     // connectionString: 'host=habbit.postgres.database.azure.com port=5432 dbname=habbit user=habbit password=Baba313104 sslmode=require',
-    connectionString: 'postgres://habbit:Baba313104@habbit.postgres.database.azure.com/postgres?sslmode=require',
-    database: 'habbit_db',
-    port: 5432,
+    // connectionString: 'host=habbit.postgres.database.azure.com port=5432 dbname=habbit_db user=habbit password=Baba313104 sslmode=require',
+    // host: 'habbit.postgres.database.azure.com',
+    // database: 'habbit_db',
+    // user: 'habbit',
+    // password: 'Baba313104',
+    // port: 5432,
+    connectionString: `postgres://${user}:${password}@${host}/${database}?sslmode=require`,
     max : 10,
     connectionTimeoutMillis : 0,
     idleTimeoutMillis : 0
+    // return `postgres://${this.user}habbit:Baba313104@habbit.postgres.database.azure.com/habbit_db?sslmode=require`
+    
+    
 });
 
-pool.connect();
+pool.connect()
+.then(()=> {
+    console.log('successful connection!')
+    pool.query("SELECT * FROM daily_status;")
+    .then((result) => {
+        console.log(result)
+    })
+})
+.catch((error) => {
+    console.log("connection failed!");
+    console.log(error.message);
+});
 
 
 export {pool}
