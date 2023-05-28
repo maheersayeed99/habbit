@@ -35,11 +35,11 @@ app.use("/api", router);
 
 
 
-daily_update_time_check(app, update_hour, update_minute);
-setInterval(() => {
-    daily_update_time_check(app, update_hour, update_minute);
+// daily_update_time_check(app, update_hour, update_minute);
+// setInterval(() => {
+//     daily_update_time_check(app, update_hour, update_minute);
 
-}, 60000)
+// }, 60000)
 
  
 // app.get("/", (req, res) => {
