@@ -19,7 +19,9 @@ const pool = new Pool({
     // password: 'Baba313104',
     // database: 'habbit',
     // port: 5432,
-    connectionstring: 'host=habbit.postgres.database.azure.com port=5432 dbname=habbit user=habbit password=Baba313104 sslmode=require',
+
+    // connectionString: 'host=habbit.postgres.database.azure.com port=5432 dbname=habbit user=habbit password=Baba313104 sslmode=require',
+    connectionString: 'postgres://habbit:Baba313104@habbit.postgres.database.azure.com/postgres?sslmode=require',
     max : 10,
     connectionTimeoutMillis : 0,
     idleTimeoutMillis : 0
