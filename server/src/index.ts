@@ -42,12 +42,12 @@ app.use("/api", router);
 // }, 60000)
 
  
-// app.get("/", (req, res) => {
+app.get("/", (req, res) => {
 
-//     res.send("hello sad");
+    res.send("hello sad");
     
 
-// } );
+} );
 
 
 
