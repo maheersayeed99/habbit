@@ -6,7 +6,7 @@
   "scripts": {
     "start_local": "nodemon server/src/index.ts",
     "start": "node js_files/server/src/index.js",
-    "build": "tsc"
+    "build": "tsc --outDir test"
   },
   "keywords": [],
   "author": "",
