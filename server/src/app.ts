@@ -29,9 +29,9 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 
 // app.listen(4000);
-const port = process.env.PORT || 4000;
+const port = 80;
 app.listen(port);
-
+s
 
 console.log(process.env.PORT);
 console.log("nodemon working");
