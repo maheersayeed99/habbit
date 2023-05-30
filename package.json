@@ -2,10 +2,10 @@
   "name": "habbit",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "start_local": "nodemon server/src/index.ts",
-    "start": "node js_files/server/src/index.js",
+    "start_local": "nodemon server/src/app.ts",
+    "start": "node js_files/server/src/app.js",
     "build": "tsc"
   },
   "keywords": [],
