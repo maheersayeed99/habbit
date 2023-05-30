@@ -28,7 +28,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 
-app.listen(4000);
+// app.listen(4000);
+app.set('port', process.env.PORT || 4000);
+app.listen(app.get('port'));
+
+console.log(process.env.PORT);
 console.log("nodemon working");
 
 app.use("/api", router);
