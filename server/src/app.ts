@@ -28,7 +28,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 
-app.listen(4000);
+app.listen(80);
 console.log("nodemon working");
 
 app.use("/api", router);
