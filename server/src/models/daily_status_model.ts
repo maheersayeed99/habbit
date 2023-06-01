@@ -1,4 +1,7 @@
 import { pool } from "../../database/database"
+require('dotenv').config()
+
+
 interface Pool_Object {
     activity: string;
     frequency: number;
@@ -32,7 +35,7 @@ class daily_status_model{
     }
 
 
-    static update_entry = (curr_activity :string) => {
+    static update_entry = (curr_activity :string, password : string) => {
 
         curr_activity = curr_activity.toLowerCase();
 
@@ -51,7 +54,20 @@ class daily_status_model{
                             WHERE activity = '${curr_activity}';
                             `;
         console.log(current_query);
-        return pool.query(current_query)
+
+        return new Promise<void>((resolve, reject) => {
+            if (password == process.env.update_password) {
+                console.log("update password is correct!");
+                resolve();
+            }
+            else{
+                console.log("update password doesn't match")
+                reject("wrong password");
+            }
+        })
+        .then(() => {
+            return pool.query(current_query);
+        })
         .then((result : Array<Pool_Query>)=> {
             console.log("query successful");
             return result[2].rows[0].completed;
@@ -126,11 +142,25 @@ class daily_status_model{
     }
 
 
-    static daily_update = () => {
+    static daily_update = (password : string) => {
 
         var current_query = `SELECT * FROM daily_status;`;
         console.log(current_query)
-        return pool.query(current_query)
+
+        return new Promise<void>((resolve, reject) => {
+            if (password == process.env.update_password) {
+                console.log("update password is correct!");
+                resolve();
+            }
+            else{
+                console.log("update password doesn't match")
+                reject("wrong password");
+            }
+        })
+        .then(() => {
+            return pool.query(current_query);
+        })
+
         .then((result : Pool_Query) => {
             console.log("query successful");
             // const todo_array = new Array<string>;
@@ -171,7 +201,7 @@ class daily_status_model{
 
 
 
-    static clean_all = () => {
+    static clean_all = (password : string) => {
 
         var current_query = `UPDATE daily_status 
                             SET progress = 0,
@@ -179,7 +209,22 @@ class daily_status_model{
                                 streak = 0;
                             `;
         console.log(current_query);
-        return pool.query(current_query)
+
+        
+        return new Promise<void>((resolve, reject) => {
+            if (password == process.env.update_password) {
+                console.log("update password is correct!");
+                resolve();
+            }
+            else{
+                console.log("update password doesn't match")
+                reject("wrong password");
+            }
+        })
+        .then(() => {
+            return pool.query(current_query);
+        })
+
         .then((result : Pool_Query)=> {
             console.log("query successful");
             return result.rows;

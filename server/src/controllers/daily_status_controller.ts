@@ -58,8 +58,10 @@ const get_streaks = (req: Request, res : Response) => {
 const update_progress = (req: Request, res: Response) => {
     return new Promise((resolve, reject) => {
         const entry_to_update = req.body.activity;
+        const password = req.body.password;
+
         console.log(entry_to_update);
-        resolve(daily_status_model.update_entry(entry_to_update));
+        resolve(daily_status_model.update_entry(entry_to_update, password));
     })
 
     .then((result) => {
@@ -76,8 +78,9 @@ const update_progress = (req: Request, res: Response) => {
 
 
 const daily_update= (req: Request, res: Response) => {
+    const password = req.body.password;
     return new Promise((resolve, reject) => {
-        resolve(daily_status_model.daily_update());
+        resolve(daily_status_model.daily_update(password));
     })
 
     .then((result) => {
@@ -94,8 +97,10 @@ const daily_update= (req: Request, res: Response) => {
 
 
 const clean_table = (req: Request, res: Response) => {
+    const password = req.body.password;
+
     return new Promise((resolve, reject) => {
-        resolve(daily_status_model.clean_all());
+        resolve(daily_status_model.clean_all(password));
     })
     .then((result) => {
         console.log("Done");

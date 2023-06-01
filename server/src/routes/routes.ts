@@ -14,6 +14,6 @@ router.post('/update', update_progress);
 router.post('/clean', clean_table);
 router.get('/todo', get_todo);
 router.get('/streaks', get_streaks);
-router.get('/daily', daily_update);
+router.post('/daily', daily_update);
 
 export {router}
