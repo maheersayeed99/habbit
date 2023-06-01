@@ -4,7 +4,7 @@ import { Express } from "express";
 // import {BodyParser} from "body-parser"
 import bodyParser from "body-parser";
 
-
+require('dotenv').config()
 
 const app = express();
 const update_hour : number = 21;

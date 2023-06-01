@@ -1,4 +1,5 @@
 import express from "express"
+require('dotenv').config()
 
 const {Pool} = require('pg');
  
@@ -15,8 +16,9 @@ const {Pool} = require('pg');
 
 const host = 'habbit.postgres.database.azure.com';
 const user = 'habbit';
-const password = 'Baba313104';
-const database = 'habbit_db'
+
+const password = process.env.database_password;
+const database = 'habbit_db';
 
 const pool = new Pool({
     // host: 'habbit.postgres.database.azure.com',
@@ -30,7 +32,6 @@ const pool = new Pool({
     // host: 'habbit.postgres.database.azure.com',
     // database: 'habbit_db',
     // user: 'habbit',
-    // password: 'Baba313104',
     // port: 5432,
     connectionString: `postgres://${user}:${password}@${host}/${database}?sslmode=require`,
     max : 10,
