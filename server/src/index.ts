@@ -27,7 +27,7 @@ const daily_update_time_check = (app: Express, hour : number, minute : number) =
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8080;
 app.listen(port);
 console.log("nodemon working");
 
