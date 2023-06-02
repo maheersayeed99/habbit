@@ -3,12 +3,13 @@ import {router} from "./routes/routes"
 import { Express } from "express";
 // import {BodyParser} from "body-parser"
 import bodyParser from "body-parser";
+import axios from 'axios';
 
 require('dotenv').config()
 
 const app = express();
-const update_hour : number = 21;
-const update_minute : number = 13;
+const update_hour : number = 3;
+const update_minute : number = 0;
 
 
 const daily_update_time_check = (app: Express, hour : number, minute : number) => {
@@ -17,9 +18,20 @@ const daily_update_time_check = (app: Express, hour : number, minute : number) =
     if(date.getHours() == hour && date.getMinutes() == minute)
     {
         console.log("time to update!");
-        app.get("/api/daily", (req,res)=> {
-            res.send("done");
+        axios.post(`https://habbit.azurewebsites.net/api/daily`, {
+            password : process.env.update_password
+          })
+        .then((result => {
+            console.log("axios request sent");
+        }))
+        .catch((error)=> {
+            console.log("axios request failed");
         })
+        
+        // app.post("/api/daily", (req,res)=> {
+        //     request.post()
+        //     res.send("done");
+        // })
     }
 }
 
@@ -35,11 +47,11 @@ app.use("/api", router);
 
 
 
-// daily_update_time_check(app, update_hour, update_minute);
-// setInterval(() => {
-//     daily_update_time_check(app, update_hour, update_minute);
+daily_update_time_check(app, update_hour, update_minute);
+setInterval(() => {
+    daily_update_time_check(app, update_hour, update_minute);
 
-// }, 60000)
+}, 60000)
 
  
 app.get("/", (req, res) => {
