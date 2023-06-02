@@ -56,7 +56,10 @@ setInterval(() => {
  
 app.get("/", (req, res) => {
 
-    res.send("hello sad");
+    var date = new Date();
+    var hour = date.getMinutes();
+    console.log("HOUR" + hour);
+    res.json(date);
     
 
 } );
