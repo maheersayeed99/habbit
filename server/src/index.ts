@@ -3,13 +3,24 @@ import {router} from "./routes/routes"
 import { Express } from "express";
 // import {BodyParser} from "body-parser"
 import bodyParser from "body-parser";
-import axios from 'axios';
 
 require('dotenv').config()
 
 const app = express();
 const update_hour : number = 3;
 const update_minute : number = 0;
+
+const url = "https://habbit.azurewebsites.net/api/daily";
+const options = {
+  method: "POST",
+  headers: {
+    Accept: "application/json",
+    "Content-Type": "application/json;charset=UTF-8",
+  },
+  body: JSON.stringify({
+    password : process.env.update_password
+  }),
+};
 
 
 const daily_update_time_check = (app: Express, hour : number, minute : number) => {
@@ -18,9 +29,10 @@ const daily_update_time_check = (app: Express, hour : number, minute : number) =
     if(date.getHours() == hour && date.getMinutes() == minute)
     {
         console.log("time to update!");
-        axios.post(`https://habbit.azurewebsites.net/api/daily`, {
-            password : process.env.update_password
-          })
+        // axios.post(`https://habbit.azurewebsites.net/api/daily`, {
+        //     password : process.env.update_password
+        //   })
+        fetch(url, options)
         .then((result => {
             console.log("axios request sent");
         }))
@@ -57,9 +69,10 @@ setInterval(() => {
 app.get("/", (req, res) => {
 
     var date = new Date();
-    var hour = date.getMinutes();
+    var hour = date.getHours();
+    var minute = date.getMinutes();
     console.log("HOUR" + hour);
-    res.json(date);
+    res.json(hour + ":" + minute);
     
 
 } );

@@ -25,10 +25,8 @@ jobs:
         run: |
           npm install
           npm install express
-          npm install axios
           npm install pg
           npm install ts-node --save-dev
-          npm install typescript -g 
           npm install typescript --save-dev
           npm run build
           
