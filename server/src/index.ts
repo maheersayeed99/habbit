@@ -34,10 +34,10 @@ const daily_update_time_check = (app: Express, hour : number, minute : number) =
         //   })
         fetch(url, options)
         .then((result => {
-            console.log("axios request sent");
+            console.log("fetch request sent");
         }))
         .catch((error)=> {
-            console.log("axios request failed");
+            console.log("fetch request failed");
         })
         
         // app.post("/api/daily", (req,res)=> {
