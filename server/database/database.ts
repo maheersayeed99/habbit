@@ -21,10 +21,10 @@ const pool = new Pool({
 pool.connect()
 .then(()=> {
     console.log('successful connection!')
-    pool.query("SELECT * FROM daily_status;")
-    .then((result) => {
-        console.log(result)
-    })
+    return pool.query("SELECT * FROM daily_status ORDER BY timestamp ASC LIMIT 1;");
+})
+.then((result) => {
+    console.log(result.rows)
 })
 .catch((error) => {
     console.log("connection failed!");

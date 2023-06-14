@@ -1,14 +1,7 @@
 import express from "express";
-import { Response, Request } from "express";
-import { test, update_progress, clean_table, get_todo, get_streaks, daily_update } from "../controllers/daily_status_controller";
+import { update_progress, clean_table, get_todo, get_streaks, daily_update } from "../controllers/daily_status_controller";
 
 const router = express.Router()
-
-router.post('/test', (req: Request, res : Response) => {
-    console.log(Object.keys(req));
-    console.log(req.body);
-    res.send(req.body);
-})
 
 router.post('/update', update_progress);
 router.post('/clean', clean_table);

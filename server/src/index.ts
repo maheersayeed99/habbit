@@ -1,14 +1,18 @@
 import express from "express"
 import {router} from "./routes/routes" 
 import { Express } from "express";
-// import {BodyParser} from "body-parser"
 import bodyParser from "body-parser";
 
 require('dotenv').config()
 
+const schedule = require('node-schedule');
+
 const app = express();
-const update_hour : number = 3;
-const update_minute : number = 0;
+// const update_hour : number = 11;
+// const update_minute : number = 30;
+
+const update_hour : number = 22;
+const update_minute : number = 18;
 
 const url = "https://habbit.azurewebsites.net/api/daily";
 const options = {
@@ -25,13 +29,10 @@ const options = {
 
 const daily_update_time_check = (app: Express, hour : number, minute : number) => {
     var date = new Date();
-    console.log(date.getHours())
+    console.log(date.getHours(), date.getMinutes());
     if(date.getHours() == hour && date.getMinutes() == minute)
     {
         console.log("time to update!");
-        // axios.post(`https://habbit.azurewebsites.net/api/daily`, {
-        //     password : process.env.update_password
-        //   })
         fetch(url, options)
         .then((result => {
             console.log("fetch request sent");
@@ -40,10 +41,6 @@ const daily_update_time_check = (app: Express, hour : number, minute : number) =
             console.log("fetch request failed");
         })
         
-        // app.post("/api/daily", (req,res)=> {
-        //     request.post()
-        //     res.send("done");
-        // })
     }
 }
 
@@ -53,17 +50,20 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 const port = process.env.PORT || 8080;
 app.listen(port);
-console.log("nodemon working");
+console.log("app running");
 
 app.use("/api", router);
 
 
+const job = schedule.scheduleJob(`${update_minute} ${update_hour} * * *`, () => {daily_update_time_check(app, update_hour, update_minute)
+});
 
-daily_update_time_check(app, update_hour, update_minute);
-setInterval(() => {
-    daily_update_time_check(app, update_hour, update_minute);
 
-}, 60000)
+// daily_update_time_check(app, update_hour, update_minute);
+// setInterval(() => {
+//     daily_update_time_check(app, update_hour, update_minute);
+
+// }, 60000)
 
  
 app.get("/", (req, res) => {

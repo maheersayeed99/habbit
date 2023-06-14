@@ -28,6 +28,7 @@ jobs:
           npm install pg
           npm install ts-node --save-dev
           npm install typescript --save-dev
+          npm install node-schedule
           npm run build
           
       
