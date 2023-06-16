@@ -8,11 +8,11 @@ require('dotenv').config()
 const schedule = require('node-schedule');
 
 const app = express();
-// const update_hour : number = 11;
-// const update_minute : number = 30;
+const update_hour : number = 9;
+const update_minute : number = 30;
 
-const update_hour : number = 22;
-const update_minute : number = 18;
+// const update_hour : number = 22;
+// const update_minute : number = 18;
 
 const url = "https://habbit.azurewebsites.net/api/daily";
 const options = {
@@ -55,8 +55,9 @@ console.log("app running");
 app.use("/api", router);
 
 
-const job = schedule.scheduleJob(`${update_minute} ${update_hour} * * *`, () => {daily_update_time_check(app, update_hour, update_minute)
-});
+// const job = schedule.scheduleJob(`${update_minute} ${update_hour} * * *`, () => {
+//     daily_update_time_check(app, update_hour, update_minute)
+// });
 
 
 // daily_update_time_check(app, update_hour, update_minute);
@@ -76,9 +77,6 @@ app.get("/", (req, res) => {
     
 
 } );
-
-
-
 
 
 export { router }
