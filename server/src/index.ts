@@ -2,6 +2,7 @@ import express from "express"
 import {router} from "./routes/routes" 
 import { Express } from "express";
 import bodyParser from "body-parser";
+import {render_html, get_data} from "./render"
 
 require('dotenv').config()
 
@@ -69,12 +70,27 @@ app.use("/api", router);
  
 app.get("/", (req, res) => {
 
-    var date = new Date();
-    var hour = date.getHours();
-    var minute = date.getMinutes();
-    console.log("HOUR" + hour);
-    res.json(hour + ":" + minute);
+    // var date = new Date();
+    // var hour = date.getHours();
+    // var minute = date.getMinutes();
+    // console.log("HOUR" + hour);
+    //res.json(hour + ":" + minute);
+    // const render_string = fetch("/main",(req1,res1) => { 
+    //     console.log(res1);
+    //     return render_html(res1);
+    // })
+
+    res.setHeader("Content-Type", "text/html")
+    get_data()
+    .then((table_data) => {
+        res.send(render_html(table_data));
+    })
+    // res.send(render_html());
     
+    
+    // res.send(`
+    // <h1>Mock API</h1>
+    // `)
 
 } );
 

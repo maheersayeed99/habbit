@@ -1,6 +1,20 @@
 import {Request, Response} from "express"
 import { daily_status_model } from "../models/daily_status_model"
 
+const get_all = (req: Request, res : Response) => {
+    return new Promise((resolve, reject) => {
+        resolve(daily_status_model.get_all_status());
+    })
+    .then((result) => {
+        res.send(result);
+        return Promise.resolve(result);
+    })
+    .catch((error)=>{
+        console.log("error")
+        res.json(error);
+        return error;
+    })
+}
 
 const get_todo = (req: Request, res : Response) => {
     return new Promise((resolve, reject) => {
@@ -91,4 +105,4 @@ const clean_table = (req: Request, res: Response) => {
 }
 
 
-export {get_todo, get_streaks, daily_update, update_progress, clean_table};
+export {get_todo, get_streaks, daily_update, update_progress, clean_table, get_all};

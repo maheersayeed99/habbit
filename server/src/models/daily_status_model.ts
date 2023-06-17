@@ -20,13 +20,13 @@ interface Pool_Query {
 class daily_status_model{
 
     static get_all_status = () => {
-        const current_query = `SELECT * FROM daily_status;`;
+        const current_query = `SELECT * FROM daily_status ORDER BY completed, streak DESC;`;
         return pool.query(current_query)
         .then((result: Pool_Query) => {
             console.log('successful query');
-            result.rows.forEach((element: any) => {
-                console.log(element.activity);
-            });
+            // result.rows.forEach((element: any) => {
+            //     console.log(element.activity);
+            // });
             return result.rows;
         })
         .catch((error: Error) => {
@@ -247,4 +247,4 @@ class daily_status_model{
 }
 
 
-export {daily_status_model};
+export {daily_status_model, Pool_Object, Pool_Query};
