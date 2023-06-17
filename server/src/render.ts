@@ -71,15 +71,15 @@ const render_html = (table_data: Array<Pool_Object>) => {
         }
     
         .yellow-progress {
-          background-color: yellow;
+          background-color: gold;
         }
     
         .green-progress {
-          background-color: green;
+          background-color: mediumturquoise;
         }
     
         .red-progress {
-          background-color: red;
+          background-color: tomato;
         }
     
         .activity-text {
@@ -88,22 +88,9 @@ const render_html = (table_data: Array<Pool_Object>) => {
           color: black; /* Set font color to black */
         }
     
-        /* Adjust the width of the progress bar */
-        .yellow-progress {
-          width: 80%;
-        }
-    
-        .green-progress {
-          width: 50%;
-        }
-    
-        .red-progress {
-          width: 20%;
-        }
-    
         /* Set default background colors based on progress bar colors */
         .activity-cell.yellow-progress {
-          background-color: lightyellow;
+          background-color: lightgoldenrodyellow;
         }
     
         .activity-cell.green-progress {
@@ -111,7 +98,7 @@ const render_html = (table_data: Array<Pool_Object>) => {
         }
     
         .activity-cell.red-progress {
-          background-color: lightcoral;
+          background-color: pink;
         }
     
         /* Background color scaling for streak cells */
@@ -122,49 +109,24 @@ const render_html = (table_data: Array<Pool_Object>) => {
         }
     
         /* Customize background color opacity based on streak number */
-        .streak-cell[data-streak="1"] {
-          background-color: cornflowerblue;
-          opacity: 0.2;
-        }
-    
-        .streak-cell[data-streak="2"] {
-          background-color: cornflowerblue;
-          opacity: 0.3;
-        }
-    
-        .streak-cell[data-streak="3"] {
-          background-color: cornflowerblue;
-          opacity: 0.4;
-        }
-    
-        .streak-cell[data-streak="4"] {
-          background-color: cornflowerblue;
-          opacity: 0.5;
-        }
-    
-        .streak-cell[data-streak="5"] {
-          background-color: cornflowerblue;
-          opacity: 0.6;
-        }
-    
-        /* Continue the pattern for other streak numbers */
-    
-        .streak-cell[data-streak="14"] {
-          background-color: cornflowerblue;
-          opacity: 1;
-        }
+        .streak-cell{
+            opacity: 1.0;
+            filter: brightness(0.5);
+          }
+        .streak-background{
+            background-color: cornflowerblue;
+          }
     
         /* Streak text color and opacity */
         .streak-text {
           color: black;
-          opacity: 1;
         }
       </style>
     </head>`
 
     
     var middle = `
-        <body>
+        <body style="font-family: Arial">
         <div class="table-container">
             <table>
             <thead>
@@ -177,14 +139,36 @@ const render_html = (table_data: Array<Pool_Object>) => {
     `
 
     table_data.forEach(element => {
+        var progress_class = "";        
+        
+        if (element.completed == false) {
+            progress_class = "red-progress";
+        }
+        else if(element.completed_today == false) {
+            progress_class = "yellow-progress";
+        }
+        else{
+            progress_class = "green-progress";
+        }
+
+        var percentage = 100*(element.progress/element.frequency);
+        const floor = 0.80;
+        const ceiling = 1.5;
+        const max_streak = 14;
+        var streak_brightness = floor + ((Math.min(element.streak,max_streak)/max_streak)* (ceiling-floor));
+        // element.activity = element.activity.toUpperCase();
+
         var temp_str = 
         `
             <tr>
-            <td class="activity-cell yellow-progress">
-                <div class="activity-progress yellow-progress"></div>
-                <span class="activity-text">${element.activity}</span>
+            <td class="activity-cell ${progress_class}">
+                <div class="activity-progress ${progress_class}" style="width: ${percentage}%;"></div>
+                <span class="activity-text">${element.activity} </span>
             </td>
-            <td class="streak-cell" data-streak="5"><span class="streak-text">5</span></td>
+            <td class="streak-cell" style="filter: brightness(${streak_brightness});">
+                <div class="streak-background"></div>
+                <div class="streak-text">${element.streak}</div>
+            </td>
             </tr>
         
         `
