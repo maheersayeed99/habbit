@@ -2,7 +2,6 @@
 import { Pool_Object, Pool_Query } from "./models/daily_status_model"; 
 
 const get_data = () => {
-    // var rslt : string = "";
     const url = "https://habbit.azurewebsites.net/api/main";
     // const url = "http://localhost:8080/api/main"
     
@@ -17,12 +16,6 @@ const get_data = () => {
         console.error(error);
         return error
     });
-
-
-    // .catch((error)=> {
-    //     console.log("fetch request failed");
-    // })
-
 }
 
 
@@ -41,7 +34,7 @@ const render_html = (table_data: Array<Pool_Object>) => {
     
         table {
           border-collapse: collapse;
-          width: 50%;
+          width: 40%;
           border-radius: 10px; /* Add border radius to round corners */
           overflow: hidden; /* Hide overflowing content */
         }
@@ -50,6 +43,8 @@ const render_html = (table_data: Array<Pool_Object>) => {
           padding: 8px;
           text-align: center; /* Center the text in all columns */
           color: #333; /* Darker text color */
+          width:50%;
+          
         }
     
         th {
@@ -156,7 +151,7 @@ const render_html = (table_data: Array<Pool_Object>) => {
         const ceiling = 1.5;
         const max_streak = 14;
         var streak_brightness = floor + ((Math.min(element.streak,max_streak)/max_streak)* (ceiling-floor));
-        // element.activity = element.activity.toUpperCase();
+        element.activity = element.activity[0].toUpperCase() + element.activity.slice(1)
 
         var temp_str = 
         `

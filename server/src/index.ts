@@ -12,9 +12,6 @@ const app = express();
 const update_hour : number = 9;
 const update_minute : number = 30;
 
-// const update_hour : number = 22;
-// const update_minute : number = 18;
-
 const url = "https://habbit.azurewebsites.net/api/daily";
 const options = {
   method: "POST",
@@ -55,7 +52,7 @@ console.log("app running");
 
 app.use("/api", router);
 
-
+// These would work if app was running all the time on a better plan
 // const job = schedule.scheduleJob(`${update_minute} ${update_hour} * * *`, () => {
 //     daily_update_time_check(app, update_hour, update_minute)
 // });
@@ -75,22 +72,12 @@ app.get("/", (req, res) => {
     // var minute = date.getMinutes();
     // console.log("HOUR" + hour);
     //res.json(hour + ":" + minute);
-    // const render_string = fetch("/main",(req1,res1) => { 
-    //     console.log(res1);
-    //     return render_html(res1);
-    // })
-
+    
     res.setHeader("Content-Type", "text/html")
     get_data()
     .then((table_data) => {
         res.send(render_html(table_data));
     })
-    // res.send(render_html());
-    
-    
-    // res.send(`
-    // <h1>Mock API</h1>
-    // `)
 
 } );
 

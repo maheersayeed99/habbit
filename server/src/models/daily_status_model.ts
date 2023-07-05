@@ -16,22 +16,18 @@ interface Pool_Query {
     rows : Array<Pool_Object>
 }
 
-
 class daily_status_model{
 
     static get_all_status = () => {
-        const current_query = `SELECT * FROM daily_status ORDER BY completed, streak DESC;`;
+        const current_query = `SELECT * FROM daily_status ORDER BY completed, completed_today, streak DESC, activity;`;
         return pool.query(current_query)
         .then((result: Pool_Query) => {
             console.log('successful query');
-            // result.rows.forEach((element: any) => {
-            //     console.log(element.activity);
-            // });
             return result.rows;
         })
         .catch((error: Error) => {
             console.log(error);
-            return error;
+            return 3;
         });
     }
 
@@ -72,11 +68,16 @@ class daily_status_model{
         })
         .then((result : Array<Pool_Query>)=> {
             console.log("query successful");
-            return result[2].rows[0].completed;
+            if (result[2].rows[0].completed){
+                return 1;
+            }
+            else{
+                return 2;
+            }
         })
         .catch((error : Error )=> {
             console.log(error.message);
-            return error;
+            return 0;
         });
     }
 
