@@ -52,7 +52,7 @@ const update_progress = (req: Request, res: Response) => {
         const password = req.body.password;
 
         console.log(entry_to_update);
-        resolve(daily_status_model.update_entry(entry_to_update, password));
+        resolve(daily_status_model.update_entry_list(entry_to_update, password));
     })
 
     .then((result) => {

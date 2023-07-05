@@ -149,7 +149,7 @@ const render_html = (table_data: Array<Pool_Object>) => {
         var percentage = 100*(element.progress/element.frequency);
         const floor = 0.80;
         const ceiling = 1.5;
-        const max_streak = 14;
+        const max_streak = 30;
         var streak_brightness = floor + ((Math.min(element.streak,max_streak)/max_streak)* (ceiling-floor));
         element.activity = element.activity[0].toUpperCase() + element.activity.slice(1)
 

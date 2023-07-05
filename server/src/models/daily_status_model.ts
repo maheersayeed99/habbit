@@ -27,8 +27,50 @@ class daily_status_model{
         })
         .catch((error: Error) => {
             console.log(error);
-            return 3;
+            return error;
         });
+    }
+
+
+    static update_entry_list = async (curr_activity :string, password : string) => {
+
+        const activity_list = curr_activity.toLowerCase().split(" ");
+        
+        const rows = await daily_status_model.get_all_status();
+        var acceptable = new Set()
+        for (const entry of rows){
+            acceptable.add(entry["activity"])
+        }
+        for (const activity of activity_list){
+            if (acceptable.has(activity) == false){
+                return 0;
+            }
+        }
+        
+
+        var failed = false;
+        var success = false;
+
+        for(const activity of activity_list){
+            const check = await daily_status_model.update_entry(activity, password);
+            if (check == 0){
+                failed = true;
+            }
+            if (check == 1){
+                success = true;
+            }
+        }
+
+        if (failed) {
+            return 0;
+        }
+        else if (success){
+            return 1;
+        }
+        else{
+            return 2;
+        }
+
     }
 
 
@@ -214,8 +256,7 @@ class daily_status_model{
 
         var current_query = `UPDATE daily_status 
                             SET progress = 0,
-                                completed = false,
-                                streak = 0;
+                                completed_today = false
                             `;
         console.log(current_query);
 
