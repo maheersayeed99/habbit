@@ -11,6 +11,7 @@ interface Pool_Object {
     completed: boolean;
     completed_today:boolean;
     days_left:number;
+    max_streak: number;
 } 
 interface Pool_Query {
     rows : Array<Pool_Object>
@@ -230,13 +231,15 @@ class daily_status_model{
                 }
 
                 element.progress = 0;
+                element.max_streak = Math.max(element.max_streak, element.streak);
 
                 var new_query = `UPDATE daily_status 
                                     SET streak = ${element.streak},
                                         progress = ${element.progress},
                                         days_left = ${element.days_left},
                                         completed = ${element.completed},
-                                        completed_today = false
+                                        completed_today = false,
+                                        max_streak = ${element.max_streak}
                                     WHERE activity = '${element.activity}';`;
 
                 pool.query(new_query);

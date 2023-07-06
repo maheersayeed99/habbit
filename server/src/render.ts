@@ -43,7 +43,6 @@ const render_html = (table_data: Array<Pool_Object>) => {
           padding: 8px;
           text-align: center; /* Center the text in all columns */
           color: #333; /* Darker text color */
-          width:50%;
           
         }
     
@@ -55,6 +54,7 @@ const render_html = (table_data: Array<Pool_Object>) => {
         .activity-cell {
           padding: 0;
           position: relative;
+          width:50%;
         }
     
         .activity-progress {
@@ -107,14 +107,18 @@ const render_html = (table_data: Array<Pool_Object>) => {
         .streak-cell{
             opacity: 1.0;
             filter: brightness(0.5);
+            width:25%;
           }
-        .streak-background{
-            background-color: cornflowerblue;
-          }
-    
         /* Streak text color and opacity */
         .streak-text {
           color: black;
+        }
+
+        .max-cell {
+          padding: 0;
+          position: relative;
+          background-color: #c585f7;
+          width:25%;
         }
       </style>
     </head>`
@@ -127,7 +131,7 @@ const render_html = (table_data: Array<Pool_Object>) => {
             <thead>
                 <tr>
                 <th>Activity</th>
-                <th>Streak</th>
+                <th colspan = "2">Streak / Max</th>
                 </tr>
             </thead>
             <tbody>
@@ -151,6 +155,7 @@ const render_html = (table_data: Array<Pool_Object>) => {
         const ceiling = 1.5;
         const max_streak = 30;
         var streak_brightness = floor + ((Math.min(element.streak,max_streak)/max_streak)* (ceiling-floor));
+        var max_brightness = floor + ((Math.min(element.max_streak,max_streak)/max_streak)* (ceiling-floor));
         element.activity = element.activity[0].toUpperCase() + element.activity.slice(1)
 
         var temp_str = 
@@ -161,8 +166,10 @@ const render_html = (table_data: Array<Pool_Object>) => {
                 <span class="activity-text">${element.activity} </span>
             </td>
             <td class="streak-cell" style="filter: brightness(${streak_brightness});">
-                <div class="streak-background"></div>
                 <div class="streak-text">${element.streak}</div>
+            </td>
+            <td class="max-cell" style="filter: brightness(${max_brightness});">
+                <div class="streak-text">${element.max_streak}</div>
             </td>
             </tr>
         
