@@ -1,13 +1,15 @@
 {
   "compilerOptions": {
+    "jsx": "react",
     "target": "es6",
     "module": "commonjs",
     "outDir": "./dist",
     "rootDir": ".",
     "baseUrl": ".",
     "esModuleInterop": true,
-    "strict": false
+    "strict": false,
+    "allowJs": true,
   },
-  "include": ["server/**/*"],
+  "include": ["server/**/*.ts", "client/**/*.tsx"],
   "exclude": ["node_modules"]
 }

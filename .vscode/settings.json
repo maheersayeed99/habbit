@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/9d7bc639-1940-4dc0-b55e-44bea9dd59ff/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/habbit",
+    "appService.deploySubpath": "."
+}

@@ -2,8 +2,8 @@
 import { Pool_Object, Pool_Query } from "./models/daily_status_model"; 
 
 const get_data = () => {
-    const url = "https://habbit.azurewebsites.net/api/main";
-    // const url = "http://localhost:8080/api/main"
+    // const url = "https://habbit.azurewebsites.net/api/main";
+    const url = "http://localhost:8080/api/main"
     
     return fetch(url)
     .then(response => response.json())
