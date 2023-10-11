@@ -10,6 +10,6 @@
     "strict": false,
     "allowJs": true,
   },
-  "include": ["server/**/*.ts", "client/**/*.tsx"],
+  "include": ["server/**/*.ts"],
   "exclude": ["node_modules"]
 }

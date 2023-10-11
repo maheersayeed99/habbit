@@ -9,15 +9,15 @@ const Row = (progress_class:string, percentage:number, activity: string, brightn
             
             <td className={`activity-cell ${progress_class}`} >
                 <div className={`activity-progress ${progress_class}`} style={ {width: `${percentage}%`}}></div>
-                <span className="activity-text">activity</span>
+                <span className="activity-text">{activity}</span>
             </td>
 
-            <td className="streak-cell" style="filter: brightness(${streak_brightness});">
-                <div className="streak-text">streak</div>
+            <td className="streak-cell" style={{filter: `brightness(${brightness});`}}>
+                <div className="streak-text">{streak}</div>
             </td>
             
-            <td className="max-cell" style="filter: brightness(${max_brightness});">
-                <div className="streak-text">max_streak</div>
+            <td className="max-cell" style={{filter: `brightness(${max_brightness});`}}>
+                <div className="streak-text">{max_streak}</div>
             </td>
 
         </tr>

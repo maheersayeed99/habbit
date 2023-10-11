@@ -3,10 +3,13 @@ import {router} from "./routes/routes"
 import { Express } from "express";
 import bodyParser from "body-parser";
 import {render_html, get_data} from "./render"
+import cors from "cors"
+
+
 
 require('dotenv').config()
 
-const schedule = require('node-schedule');
+// const schedule = require('node-schedule');
 
 const app = express();
 // const update_hour : number = 9;
@@ -42,7 +45,7 @@ const app = express();
 //     }
 // }
 
-
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 

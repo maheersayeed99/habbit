@@ -5,7 +5,7 @@
   "main": "dist/server/src/index.js",
   "scripts": {
     "start_local": "nodemon server/src/index.ts",
-    "start": "node dist/server/src/index.js && ",
+    "start": "node dist/server/src/index.js",
     "build": "tsc"
   },
   "keywords": [],
