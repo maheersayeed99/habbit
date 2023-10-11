@@ -8,8 +8,7 @@
     "baseUrl": ".",
     "esModuleInterop": true,
     "strict": false,
-    "allowJs": true,
   },
   "include": ["server/**/*.ts"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules","client"]
 }
