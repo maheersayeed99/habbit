@@ -5,9 +5,7 @@
   "main": "dist/server/src/index.js",
   "scripts": {
     "start_local": "nodemon server/src/index.ts",
-    "start:backend": "node dist/server/src/index.js",
-    "start:frontend": "cd client && npm start",
-    "start": "concurrently \"npm run start:frontend\" \"npm run start:backend\"",
+    "start": "node dist/server/src/index.js",
     "build": "tsc"
   },
   "keywords": [],

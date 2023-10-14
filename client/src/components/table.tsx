@@ -3,15 +3,24 @@ import "../stylesheets/table.css"
 import { Row } from "./row.tsx";
 import { useState, useEffect} from "react";
 import axios from "axios"
+// import path from "path"
+// require('dotenv').config()
 
 const Table : React.FC = () => {
 
     const [table_data, get_data] = useState([])
 
     const updateTable = async () => {
-        const table_response = await axios.get("/api/main")
+        // console.log(process.env.proxy)
+        // let proxy = "http://localhost:8080"
+        let proxy = "https://habbit.azurewebsites.net"
+        // let proxy = "";
+        const table_response = await axios.get(proxy + "/api/main")
+        console.log(table_response)
         console.log(await table_response.data);
-        get_data(table_response.data)
+        if (Array.isArray(table_response.data) === true){
+            get_data(table_response.data)
+        }
     }
 
     useEffect(()=>{updateTable()},[])

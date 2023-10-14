@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "axios": "^1.5.1",
+    "dotenv": "^16.3.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1"
@@ -11,10 +12,11 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "serve":"npx serve -s build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "proxy": "https://habbit.azurewebsites.net",
+  "proxy": "",
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -34,6 +36,8 @@
     ]
   },
   "devDependencies": {
-    "depcheck": "^1.4.6"
-  }
+    "depcheck": "^1.4.6",
+    "serve": "^14.2.1"
+  },
+  "homepage": "."
 }

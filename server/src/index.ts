@@ -3,6 +3,7 @@ import {router} from "./routes/routes"
 import { Express } from "express";
 import bodyParser from "body-parser";
 import cors from "cors"
+import path from "path"
 
 
 
@@ -15,6 +16,7 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.static(path.join(__dirname, "../../../client/build")));
 
 const port = process.env.PORT || 8080;
 app.listen(port);

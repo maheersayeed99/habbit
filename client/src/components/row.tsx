@@ -6,10 +6,10 @@ const Row = (props) => {
 
     var progress_class = "";        
         
-    if (props.data.completed == false) {
+    if (props.data.completed === false) {
         progress_class = "red-progress";
     }
-    else if(props.data.completed_today == false) {
+    else if(props.data.completed_today === false) {
         progress_class = "yellow-progress";
     }
     else{
