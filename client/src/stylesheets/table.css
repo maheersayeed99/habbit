@@ -1,17 +1,30 @@
 .table-container {
-display: flex;
-justify-content: center;
+
+/* display: flex; */
+/* justify-content: center; */
+position: relative;
+width: 100%;
+height:0px;
+padding-bottom: 100%;
 }
 
 table {
 border-collapse: collapse;
-width: 40%;
+position: absolute;
+/* padding-top: 0px; */
+top: 0;
+bottom: 0;
+left: 0;
+right: 0;
+margin: auto;
+width: 100%;
+height:100%;
+/* height: 500px; */
 border-radius: 10px; /* Add border radius to round corners */
 overflow: hidden; /* Hide overflowing content */
 }
 
 th, td {
-padding: 8px;
 text-align: center; /* Center the text in all columns */
 color: #333; /* Darker text color */
 
@@ -23,7 +36,7 @@ font-weight: bold;
 }
 
 .activity-cell {
-padding: 0;
+padding: 0px;
 position: relative;
 width:50%;
 }

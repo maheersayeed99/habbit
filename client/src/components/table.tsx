@@ -10,6 +10,8 @@ const Table : React.FC = () => {
 
     const [table_data, get_data] = useState([])
 
+    const [table_height, get_height] = useState(500);
+
     const updateTable = async () => {
         // console.log(process.env.proxy)
         // let proxy = "http://localhost:8080"
@@ -23,7 +25,14 @@ const Table : React.FC = () => {
         }
     }
 
-    useEffect(()=>{updateTable()},[])
+    const updateHeight = async () => {
+        get_height(await document.getElementsByClassName("table_container")[0].clientWidth)
+    }
+
+    useEffect(()=>{
+        
+        updateTable();
+    },[])
 
     return (
         <div className="table-container">
