@@ -1,6 +1,7 @@
 import React from "react";
 import "../stylesheets/table.css"
 import { Row } from "./row.tsx";
+import { Buttons } from "./buttons.tsx";
 import { useState, useEffect} from "react";
 import axios from "axios"
 // import path from "path"
@@ -31,12 +32,20 @@ const Table : React.FC = () => {
         console.log(staged_activities)
     }
 
+    const clear_stage = async () => {
+        stage([]);
+        console.log(staged_activities);
+    }
+
+
     useEffect(()=>{
         updateTable();
     },[])
 
     return (
         <div className="table-container">
+            <Buttons/>
+            
             <table>
                 <thead>
                 <tr>
@@ -53,6 +62,8 @@ const Table : React.FC = () => {
                 </tbody>
                 
             </table>
+
+            
             
             <span>
             </span>
