@@ -1,12 +1,30 @@
 import React from "react";
 import "../stylesheets/table.css"
+import { useState, useEffect} from "react";
 
 const Row = (props) => {
+
+    const [current_progress, stage_progress] = useState(props.data.progress)
+
+    const [stage_bool, change_stage_bool] = useState(false)
+
+    const update_progress = async () => {
+        if (current_progress < props.data.frequency){
+            stage_progress(current_progress+1)
+        }
+    }
 
     const handleClick = () =>{
         if (props.onClick) {
             props.onClick();
+            update_progress();
+            change_stage_bool(true);
         }
+    }
+
+    if (props.staged_activities.length == 0 && stage_bool == true){
+        stage_progress(current_progress);
+        change_stage_bool(false);
     }
     
     var progress_class = "";        
@@ -21,7 +39,7 @@ const Row = (props) => {
         progress_class = "green-progress";
     }
 
-    var percentage = 100*(props.data.progress/props.data.frequency);
+    var percentage = 100*(current_progress/props.data.frequency);
     const floor = 0.80;
     const ceiling = 1.5;
     const max_streak = 30;

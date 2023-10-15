@@ -26,8 +26,9 @@ const Table : React.FC = () => {
         }
     }
 
-    const stage_activity = async (activity: string) => {
-        staged_activities.push(activity);
+    const stage_activity = async (item: any) => {
+        staged_activities.push(item.activity);
+        item.progress += 1;
         stage(staged_activities);
         console.log(staged_activities)
     }
@@ -45,7 +46,7 @@ const Table : React.FC = () => {
     return (
         <div className="table-container">
             <Buttons/>
-            
+
             <table>
                 <thead>
                 <tr>
@@ -56,7 +57,7 @@ const Table : React.FC = () => {
                 <tbody>
 
                 {table_data.map((item, index) => (
-                    <Row data={item} onClick={()=>{stage_activity(item.activity)}}/>
+                    <Row data={item} staged_activities={staged_activities} onClick={()=>{stage_activity(item)}}/>
                 ))}
 
                 </tbody>
