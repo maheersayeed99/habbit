@@ -29,6 +29,7 @@ overflow: hidden; /* Hide overflowing content */
     cursor: pointer;
 }
 
+
 th, td {
 text-align: center; /* Center the text in all columns */
 color: #333; /* Darker text color */

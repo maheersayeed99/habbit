@@ -10,7 +10,7 @@ const Table : React.FC = () => {
 
     const [table_data, get_data] = useState([])
 
-    const [table_height, get_height] = useState(500);
+    const [staged_activities, stage] = useState([]);
 
     const updateTable = async () => {
         // console.log(process.env.proxy)
@@ -25,12 +25,13 @@ const Table : React.FC = () => {
         }
     }
 
-    const updateHeight = async () => {
-        get_height(await document.getElementsByClassName("table_container")[0].clientWidth)
+    const stage_activity = async (activity: string) => {
+        staged_activities.push(activity);
+        stage(staged_activities);
+        console.log(staged_activities)
     }
 
     useEffect(()=>{
-        
         updateTable();
     },[])
 
@@ -46,7 +47,7 @@ const Table : React.FC = () => {
                 <tbody>
 
                 {table_data.map((item, index) => (
-                    <Row data={item} className="whole_row"/>
+                    <Row data={item} onClick={()=>{stage_activity(item.activity)}}/>
                 ))}
 
                 </tbody>

@@ -3,9 +3,14 @@ import "../stylesheets/table.css"
 
 const Row = (props) => {
 
-
+    const handleClick = () =>{
+        if (props.onClick) {
+            props.onClick();
+        }
+    }
+    
     var progress_class = "";        
-        
+    
     if (props.data.completed === false) {
         progress_class = "red-progress";
     }
@@ -26,7 +31,7 @@ const Row = (props) => {
     
     return (
         
-        <tr className="whole_row">
+        <tr className="whole_row" onClick={handleClick}>
 
             <td className={`activity-cell ${progress_class}`} >
                 <div className={`activity-progress ${progress_class}`} style={ {width: `${percentage}%`}}></div>
