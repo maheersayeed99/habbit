@@ -46,7 +46,7 @@ const Table : React.FC = () => {
                 <tbody>
 
                 {table_data.map((item, index) => (
-                    <Row data={item}/>
+                    <Row data={item} className="whole_row"/>
                 ))}
 
                 </tbody>

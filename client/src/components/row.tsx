@@ -26,7 +26,7 @@ const Row = (props) => {
     
     return (
         
-        <tr>
+        <tr className="whole_row">
 
             <td className={`activity-cell ${progress_class}`} >
                 <div className={`activity-progress ${progress_class}`} style={ {width: `${percentage}%`}}></div>

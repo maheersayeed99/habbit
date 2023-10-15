@@ -24,6 +24,10 @@ border-radius: 10px; /* Add border radius to round corners */
 overflow: hidden; /* Hide overflowing content */
 }
 
+.whole_row:hover td {
+    opacity: 0.75;
+    cursor: pointer;
+}
 
 th, td {
 text-align: center; /* Center the text in all columns */
