@@ -1,9 +1,7 @@
 
 import axios from "axios";
 
-const authenticate = async () => {
-    const attempt = await prompt("Enter password: ");
-
+const authenticate = async (attempt: string) => {
     const data = {
         attempt: attempt,
     }

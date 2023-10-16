@@ -39,15 +39,30 @@ const Table : React.FC = () => {
         await console.log(staged_activities);
     }
 
-    const submit_form = async () => {
-        if (await authenticate()){
+    const submit_form = async (event) => {
 
-            console.log("worked")
+        event.preventDefault();
 
+        const attempt = await prompt("Enter password: ");
+        if (await authenticate(attempt)){
+            for (const activity of staged_activities){
+                let data = {
+                    "activity":activity,
+                    "password":attempt,
+                }
+                let headers = {
+                    headers: {
+                      'Content-Type': 'application/json', // Set the content type of the request
+                    },
+                }
+                await axios.post("/api/update", data, headers)
+            }       
         }
         else{
             console.log("no")
         }
+
+        window.location.reload();
     }
 
 
@@ -56,6 +71,7 @@ const Table : React.FC = () => {
     },[])
 
     return (
+        <form onSubmit={submit_form}>
         <div className="table-container">
             
 
@@ -85,6 +101,7 @@ const Table : React.FC = () => {
             <span>
             </span>
         </div>
+        </form>
         
     );
   }
