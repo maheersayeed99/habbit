@@ -289,6 +289,10 @@ class daily_status_model{
 
     }
 
+    static check_password = (attempt:string) => {
+        return attempt === process.env.update_password
+    }
+
 }
 
 

@@ -104,5 +104,18 @@ const clean_table = (req: Request, res: Response) => {
     })
 }
 
+const authenticate = (req: Request, res: Response) => {
+    const attempt = req.body.attempt;
 
-export {get_todo, get_streaks, daily_update, update_progress, clean_table, get_all};
+    return new Promise((resolve, reject) => {
+        resolve(daily_status_model.check_password(attempt));
+    })
+    .then((result) => {
+        console.log("Done");
+        res.json(result)
+    })
+
+}
+
+
+export {get_todo, get_streaks, daily_update, update_progress, clean_table, get_all, authenticate};

@@ -6,25 +6,22 @@ const Row = (props) => {
 
     const [current_progress, stage_progress] = useState(props.data.progress)
 
-    const [stage_bool, change_stage_bool] = useState(false)
-
     const update_progress = async () => {
         if (current_progress < props.data.frequency){
-            stage_progress(current_progress+1)
+            await stage_progress(current_progress+1)
         }
     }
 
-    const handleClick = () =>{
+    const handleClick = async () =>{
         if (props.onClick) {
-            props.onClick();
-            update_progress();
-            change_stage_bool(true);
+            await props.onClick();
+            await update_progress();
         }
     }
 
-    if (props.staged_activities.length == 0 && stage_bool == true){
-        stage_progress(current_progress);
-        change_stage_bool(false);
+    if (props.staged_activities.length == 0 && current_progress != props.data.progress){
+        console.log("hit")
+        stage_progress(props.data.progress);
     }
     
     var progress_class = "";        

@@ -4,6 +4,7 @@ import { Row } from "./row.tsx";
 import { Buttons } from "./buttons.tsx";
 import { useState, useEffect} from "react";
 import axios from "axios"
+import {authenticate} from "../utilities/helper.ts"
 // import path from "path"
 // require('dotenv').config()
 
@@ -27,15 +28,26 @@ const Table : React.FC = () => {
     }
 
     const stage_activity = async (item: any) => {
-        staged_activities.push(item.activity);
-        item.progress += 1;
-        stage(staged_activities);
-        console.log(staged_activities)
+        await staged_activities.push(item.activity);
+        // item.progress += 1;
+        await stage(staged_activities);
+        await console.log(staged_activities)
     }
 
     const clear_stage = async () => {
-        stage([]);
-        console.log(staged_activities);
+        await stage([]);
+        await console.log(staged_activities);
+    }
+
+    const submit_form = async () => {
+        if (await authenticate()){
+
+            console.log("worked")
+
+        }
+        else{
+            console.log("no")
+        }
     }
 
 
@@ -45,7 +57,11 @@ const Table : React.FC = () => {
 
     return (
         <div className="table-container">
-            <Buttons/>
+            
+
+            <Buttons handleClear={clear_stage} handleSubmit = {submit_form}/>
+
+            
 
             <table>
                 <thead>
