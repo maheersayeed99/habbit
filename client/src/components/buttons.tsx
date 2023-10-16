@@ -22,7 +22,8 @@ const Buttons = (props) => {
             <div className="Clear_Button">
                 <button onClick={handleClear}>Clear</button>
             </div>
-
+            <div className="Empty_Space">
+            </div>
             <div className="Submit_Button">
                 <button onClick={handleSubmit}>Submit</button>
             </div>
