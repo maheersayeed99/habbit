@@ -24,7 +24,7 @@ const Buttons = (props) => {
             </div>
 
             <div className="Submit_Button">
-                <button type="submit">Submit</button>
+                <button onClick={handleSubmit}>Submit</button>
             </div>
 
         </div>

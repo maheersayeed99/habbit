@@ -41,8 +41,8 @@ const Table : React.FC = () => {
 
     const submit_form = async (event) => {
 
-        event.preventDefault();
-
+        
+        // event.preventDefault();
         const attempt = await prompt("Enter password: ");
         if (await authenticate(attempt)){
             for (const activity of staged_activities){
@@ -56,13 +56,15 @@ const Table : React.FC = () => {
                     },
                 }
                 await axios.post("/api/update", data, headers)
-            }       
+            }    
+            window.location.reload();   
         }
         else{
+            alert("Authentication Failed!")
             console.log("no")
         }
 
-        window.location.reload();
+        
     }
 
 
@@ -71,7 +73,6 @@ const Table : React.FC = () => {
     },[])
 
     return (
-        <form onSubmit={submit_form}>
         <div className="table-container">
             
 
@@ -101,7 +102,6 @@ const Table : React.FC = () => {
             <span>
             </span>
         </div>
-        </form>
         
     );
   }
