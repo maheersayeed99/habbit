@@ -1,6 +1,4 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Font+Name&display=swap');
-
 .table-container {
 /* display: flex; */
 /* justify-content: center; */
@@ -141,6 +139,11 @@ width:25%;
     display: flex;
 }
 
+button {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12pt;
+    color: #333;
+}
 .Submit_Button button {
     width: 75%;
     border: none;
