@@ -20,7 +20,7 @@ interface Pool_Query {
 class daily_status_model{
 
     static get_all_status = () => {
-        const current_query = `SELECT * FROM daily_status ORDER BY completed, completed_today, streak DESC, activity;`;
+        const current_query = `SELECT * FROM daily_status  WHERE active = true ORDER BY completed, completed_today, streak DESC, activity;`;
         return pool.query(current_query)
         .then((result: Pool_Query) => {
             console.log('successful query');

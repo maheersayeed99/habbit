@@ -172,10 +172,28 @@ button {
     cursor: pointer;
 }
 
+
+@keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+}
+
 @media (max-width: 600px) {
 table {
     height: 100%;
     width: 100%;
+}
+
+.whole_row:hover td {
+    opacity: 1;
+    cursor: pointer;
 }
 
 
