@@ -32,6 +32,19 @@ class daily_status_model{
         });
     }
 
+    static get_disabled_status = () => {
+        const current_query = `SELECT * FROM daily_status  WHERE active = false ORDER BY completed, completed_today, streak DESC, activity;`;
+        return pool.query(current_query)
+        .then((result: Pool_Query) => {
+            console.log('successful query');
+            return result.rows;
+        })
+        .catch((error: Error) => {
+            console.log(error);
+            return error;
+        });
+    }
+
 
     static update_entry_list = async (curr_activity :string, password : string) => {
 
@@ -195,7 +208,7 @@ class daily_status_model{
 
     static daily_update = (password : string) => {
 
-        var current_query = `SELECT * FROM daily_status;`;
+        var current_query = `SELECT * FROM daily_status WHERE active = true;`;
         console.log(current_query)
 
         return new Promise<void>((resolve, reject) => {

@@ -16,6 +16,21 @@ const get_all = (req: Request, res : Response) => {
     })
 }
 
+const get_disabled = (req: Request, res : Response) => {
+    return new Promise((resolve, reject) => {
+        resolve(daily_status_model.get_disabled_status());
+    })
+    .then((result) => {
+        res.send(result);
+        return Promise.resolve(result);
+    })
+    .catch((error)=>{
+        console.log("error")
+        res.json(error);
+        return error;
+    })
+}
+
 const get_todo = (req: Request, res : Response) => {
     return new Promise((resolve, reject) => {
         resolve(daily_status_model.get_todo());
@@ -118,4 +133,4 @@ const authenticate = (req: Request, res: Response) => {
 }
 
 
-export {get_todo, get_streaks, daily_update, update_progress, clean_table, get_all, authenticate};
+export {get_todo, get_streaks, daily_update, update_progress, clean_table, get_all, authenticate, get_disabled};

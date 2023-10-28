@@ -80,7 +80,7 @@ const Table : React.FC = () => {
 
             
 
-            <table>
+            <table className="main-table">
                 <thead>
                 <tr>
                     <th>Activity</th>
@@ -96,11 +96,7 @@ const Table : React.FC = () => {
                 </tbody>
                 
             </table>
-
             
-            
-            <span>
-            </span>
         </div>
         
     );

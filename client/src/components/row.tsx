@@ -19,7 +19,7 @@ const Row = (props) => {
         }
     }
 
-    if (props.staged_activities.length == 0 && current_progress != props.data.progress){
+    if (props.staged_activities && props.staged_activities.length == 0 && current_progress != props.data.progress){
         console.log("hit")
         stage_progress(props.data.progress);
     }
