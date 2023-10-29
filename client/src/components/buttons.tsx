@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect} from "react";
-import "../stylesheets/table.css"
+import "../stylesheets/buttons.css"
 
 const Buttons = (props) => {
 
@@ -30,8 +30,16 @@ const Buttons = (props) => {
                 <button onClick={handleClear}>Clear</button>
             </div>
 
+            <div className="Delete_Button">
+                <button onClick={handleClear}>-</button>
+            </div>
+
             <div className={`Activate_Button`}>
                 <button onClick={handleTrack}>Track</button>
+            </div>
+
+            <div className="Add_Button">
+                <button onClick={handleClear}>+</button>
             </div>
             
             <div className="Submit_Button">

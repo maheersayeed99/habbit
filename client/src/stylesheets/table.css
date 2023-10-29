@@ -1,4 +1,5 @@
 
+
 .table-container {
 font-family: Arial, Helvetica, sans-serif;
 font-size: 12pt;
@@ -8,6 +9,7 @@ width: 50%;
 padding-bottom: 50%;
 margin-left: 25%;
 margin-right: 25%;
+/* overflow: hidden; */
 }
 
 .main-table {
@@ -144,82 +146,7 @@ width:25%;
 }
 
 
-.Button_Row {
-    margin-left: auto;
-    margin-right: auto;
-    width: 100%;
-    display: flex;
-    position: relative;
-}
 
-.Submit_Button {
-    width: 40%;
-    display: flex;
-    justify-content: flex-end;
-}
-.Clear_Button {
-    width: 40%;
-    display: flex;
-    float: left;
-}
-
-.Activate_Button {
-    width: 20%;
-    display: flex;
-    float: left;
-}
-.Empty_Space {
-    width: 20%;
-    display: flex;
-}
-
-button {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 12pt;
-    color: #333;
-}
-.Submit_Button button {
-    width: 75%;
-    border: none;
-    border-radius: 10px;
-    padding: 10px;
-}
-
-.Clear_Button button {
-    width: 75%;
-    border: none;
-    border-radius: 10px;
-    padding: 10px;
-}
-
-.Activate_Button button {
-    width: 100%;
-    border: none;
-    border-radius: 10px;
-    padding: 10px;
-}
-
-.Clear_Button:hover button{
-    width: 100%;
-    transition: width 0.3s;
-    background-color: tomato;
-    cursor: pointer;
-}
-
-.Submit_Button:hover button{
-    width: 100%;
-    transition: width 0.3s;
-    background-color: mediumturquoise;
-    cursor: pointer;
-}
-
-.Activate_Button:hover button{
-    cursor: pointer;
-}
-
-.active.Activate_Button button{
-    background-color: gold;
-}
 
 @keyframes pulse {
     0% {
@@ -233,15 +160,6 @@ button {
     }
 }
 
-
-@media (min-width: 600px) {
-.Activate_Button:hover button{
-    scale: 110%;
-    transition: scale 0.3s;
-    background-color: gold;
-    cursor: pointer;
-}
-}
 
 @media (max-width: 600px) {
 .table-container{
@@ -259,13 +177,6 @@ button {
     opacity: 1;
     cursor: pointer;
 }
-
-
-.Button_Row {
-    width: 100%;
-}
-
-
 
 
 }

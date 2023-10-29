@@ -8,12 +8,14 @@ import {authenticate} from "../utilities/helper.ts"
 // import path from "path"
 // require('dotenv').config()
 
+let proxy = "http://localhost:8080"
+
 const DisableTable : React.FC = () => {
 
     const [table_data, get_data] = useState([])
 
     const updateTable = async () => {
-        const table_response = await axios.get("/api/disabled")
+        const table_response = await axios.get(proxy + "/api/disabled")
         console.log(table_response)
         console.log(await table_response.data);
         if (Array.isArray(table_response.data) === true){

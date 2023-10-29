@@ -1,0 +1,154 @@
+.Button_Row {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    display: flex;
+    position: relative;
+}
+
+.Submit_Button {
+    width: 30%;
+    display: flex;
+    justify-content: flex-end;
+}
+.Clear_Button {
+    width: 30%;
+    display: flex;
+    float: left;
+}
+
+.Activate_Button {
+    width: 20%;
+    display: flex;
+    float: left;
+}
+
+.Add_Button {
+    width: 10%;
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    
+}
+.Delete_Button {
+    width: 10%;
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    
+}
+
+button {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12pt;
+    color: #333;
+}
+
+
+
+
+.Submit_Button button {
+    width: 75%;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.Clear_Button button {
+    width: 75%;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.Activate_Button button {
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+
+.Add_Button button {
+    width: 38px;
+    height: 100%;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    /* background-color: lightgreen; */
+
+}
+
+.Delete_Button button {
+    width: 38px;
+    height: 100%;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    /* background-color: pink; */
+
+}
+
+
+
+
+
+.Clear_Button:hover button{
+    width: 100%;
+    transition: width 0.3s;
+    background-color: tomato;
+    cursor: pointer;
+}
+
+.Submit_Button:hover button{
+    width: 100%;
+    transition: width 0.3s;
+    background-color: mediumturquoise;
+    cursor: pointer;
+}
+
+.Activate_Button:hover button{
+    cursor: pointer;
+}
+
+.active.Activate_Button button{
+    background-color: gold;
+}
+
+
+.Add_Button:hover button{
+    background-color: mediumturquoise;
+    cursor: pointer;
+    scale: 110%;
+    transition: scale 0.3s;
+}
+
+.Delete_Button:hover button{
+    background-color: tomato;
+    cursor: pointer;
+    scale: 110%;
+    transition: scale 0.3s;
+}
+
+
+
+
+
+@media (min-width: 600px) {
+.Activate_Button:hover button{
+    scale: 110%;
+    transition: scale 0.3s;
+    background-color: gold;
+    cursor: pointer;
+}
+}
+
+@media (max-width: 600px) {
+
+.Button_Row {
+    width: 100%;
+}
+
+}

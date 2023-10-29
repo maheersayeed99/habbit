@@ -118,7 +118,7 @@ const Table : React.FC = () => {
 
     return (
         <div className="table-container">
-            <Modal></Modal>
+            {/* <Modal></Modal> */}
 
             <Buttons handleClear={clear_stage} handleSubmit = {submit_form} handleTrack = {toggle_track}/>
 
