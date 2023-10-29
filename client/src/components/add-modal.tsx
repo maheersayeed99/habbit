@@ -8,7 +8,7 @@ import {authenticate} from "../utilities/helper.ts"
 // import path from "path"
 // require('dotenv').config()
 
-const Modal : React.FC = () => {
+const AddModal : React.FC = () => {
 
     
     return (
@@ -55,6 +55,6 @@ const Modal : React.FC = () => {
 
 }
 
-export {Modal}
+export {AddModal}
 
 

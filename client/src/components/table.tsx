@@ -5,7 +5,8 @@ import { Buttons } from "./buttons.tsx";
 import { useState, useEffect} from "react";
 import axios from "axios"
 import {authenticate} from "../utilities/helper.ts"
-import { Modal } from "./modal.tsx";
+import { AddModal } from "./add-modal.tsx";
+import { DeleteModal } from "./delete-modal.tsx";
 // import path from "path"
 // require('dotenv').config()
 
@@ -19,6 +20,9 @@ const Table : React.FC = () => {
     const [staged_activities, stage] = useState([]);
 
     const [active, toggle] = useState(false);
+
+    const [add_modal_active, add_modal_toggle] = useState(false)
+    const [delete_modal_active, delete_modal_toggle] = useState(false)
 
     const updateTable = async () => {
         // console.log(process.env.proxy)
@@ -118,7 +122,8 @@ const Table : React.FC = () => {
 
     return (
         <div className="table-container">
-            {/* <Modal></Modal> */}
+            {/* <AddModal></AddModal> */}
+            <DeleteModal active={delete_modal_active}></DeleteModal>
 
             <Buttons handleClear={clear_stage} handleSubmit = {submit_form} handleTrack = {toggle_track}/>
 
