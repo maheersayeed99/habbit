@@ -5,8 +5,12 @@ import { Buttons } from "./buttons.tsx";
 import { useState, useEffect} from "react";
 import axios from "axios"
 import {authenticate} from "../utilities/helper.ts"
+import { Modal } from "./modal.tsx";
 // import path from "path"
 // require('dotenv').config()
+
+let proxy = "http://localhost:8080"
+// let proxy = "https://habbit.azurewebsites.net"
 
 const Table : React.FC = () => {
 
@@ -18,8 +22,7 @@ const Table : React.FC = () => {
 
     const updateTable = async () => {
         // console.log(process.env.proxy)
-        // let proxy = "http://localhost:8080"
-        let proxy = "https://habbit.azurewebsites.net"
+        
         // let proxy = "";
         const table_response = await axios.get(proxy + "/api/main")
         console.log(table_response)
@@ -68,7 +71,7 @@ const Table : React.FC = () => {
                   'Content-Type': 'application/json', // Set the content type of the request
                 },
             }
-            let proxy = "https://habbit.azurewebsites.net";
+            // let proxy = "https://habbit.azurewebsites.net";
             await axios.post(proxy + "/api/toggle", data, headers)
             window.location.reload();
         }
@@ -96,7 +99,7 @@ const Table : React.FC = () => {
                       'Content-Type': 'application/json', // Set the content type of the request
                     },
                 }
-                await axios.post("/api/update", data, headers)
+                await axios.post(proxy + "/api/update", data, headers)
             }    
             window.location.reload();   
         }
@@ -115,7 +118,7 @@ const Table : React.FC = () => {
 
     return (
         <div className="table-container">
-            
+            <Modal></Modal>
 
             <Buttons handleClear={clear_stage} handleSubmit = {submit_form} handleTrack = {toggle_track}/>
 

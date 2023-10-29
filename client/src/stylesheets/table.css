@@ -1,7 +1,5 @@
 
 .table-container {
-/* display: flex; */
-/* justify-content: center; */
 font-family: Arial, Helvetica, sans-serif;
 font-size: 12pt;
 position: relative;
@@ -216,11 +214,9 @@ button {
 }
 
 .Activate_Button:hover button{
-    scale: 110%;
-    transition: scale 0.3s;
-    background-color: gold;
     cursor: pointer;
 }
+
 .active.Activate_Button button{
     background-color: gold;
 }
@@ -235,6 +231,16 @@ button {
     100% {
       transform: scale(1);
     }
+}
+
+
+@media (min-width: 600px) {
+.Activate_Button:hover button{
+    scale: 110%;
+    transition: scale 0.3s;
+    background-color: gold;
+    cursor: pointer;
+}
 }
 
 @media (max-width: 600px) {
@@ -258,6 +264,7 @@ button {
 .Button_Row {
     width: 100%;
 }
+
 
 
 
