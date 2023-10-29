@@ -68,7 +68,7 @@ const Table : React.FC = () => {
                   'Content-Type': 'application/json', // Set the content type of the request
                 },
             }
-            let proxy = "http://localhost:8080";
+            let proxy = "https://habbit.azurewebsites.net";
             await axios.post(proxy + "/api/toggle", data, headers)
             window.location.reload();
         }

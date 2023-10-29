@@ -13,11 +13,7 @@ const DisableTable : React.FC = () => {
     const [table_data, get_data] = useState([])
 
     const updateTable = async () => {
-        // console.log(process.env.proxy)
-        let proxy = "http://localhost:8080"
-        // let proxy = "https://habbit.azurewebsites.net"
-        // let proxy = "";
-        const table_response = await axios.get(proxy + "/api/disabled")
+        const table_response = await axios.get("/api/disabled")
         console.log(table_response)
         console.log(await table_response.data);
         if (Array.isArray(table_response.data) === true){
@@ -42,8 +38,7 @@ const DisableTable : React.FC = () => {
                         'Content-Type': 'application/json', // Set the content type of the request
                         },
                     }
-                    let proxy = "http://localhost:8080";
-                    await axios.post(proxy + "/api/toggle", data, headers)
+                    await axios.post("/api/toggle", data, headers)
                     window.location.reload();
                 }
                 else{
