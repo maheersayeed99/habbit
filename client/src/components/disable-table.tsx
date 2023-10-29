@@ -25,6 +25,35 @@ const DisableTable : React.FC = () => {
         }
     }
 
+    const toggle_activity = async (item:any) => {
+
+        const elementWithClassName = await document.querySelector('.Activate_Button');
+        if (elementWithClassName) {
+            if (elementWithClassName.classList.contains("active")){
+            
+                const attempt = await prompt("Enter password: ");
+                if (await authenticate(attempt)){
+                    let data = {
+                        "activity":item.activity,
+                        "password":attempt,
+                    }
+                    let headers = {
+                        headers: {
+                        'Content-Type': 'application/json', // Set the content type of the request
+                        },
+                    }
+                    let proxy = "http://localhost:8080";
+                    await axios.post(proxy + "/api/toggle", data, headers)
+                    window.location.reload();
+                }
+                else{
+                    alert("Authentication Failed!")
+                    console.log("no")
+                }
+            }
+        }
+    }
+
 
     useEffect(()=>{
         updateTable();
@@ -40,7 +69,7 @@ const DisableTable : React.FC = () => {
             </thead>
             <tbody>
             {table_data.map((item, index) => (
-                <Row className="disabled-row" data={item}/>
+                <Row className="disabled-row" data={item} enable={()=>{toggle_activity(item)}}/>
             ))}
 
 

@@ -17,6 +17,9 @@ const Row = (props) => {
             await props.onClick();
             await update_progress();
         }
+        else if (props.enable){
+            await props.enable();
+        }
     }
 
     if (props.staged_activities && props.staged_activities.length == 0 && current_progress != props.data.progress){
