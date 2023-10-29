@@ -14,6 +14,8 @@ const Table : React.FC = () => {
 
     const [staged_activities, stage] = useState([]);
 
+    const [active, toggle] = useState(false);
+
     const updateTable = async () => {
         // console.log(process.env.proxy)
         // let proxy = "http://localhost:8080"
@@ -37,6 +39,45 @@ const Table : React.FC = () => {
     const clear_stage = async () => {
         await stage([]);
         await console.log(staged_activities);
+    }
+
+    const toggle_track = async () => {
+        
+        const elementWithClassName = await document.querySelector('.Activate_Button');
+        if (elementWithClassName) {
+            if (elementWithClassName.classList.contains("active")){
+                elementWithClassName.classList.remove('active');
+                toggle(false);
+            }
+            else{
+                elementWithClassName.classList.add('active');
+                toggle(true);
+            }
+        }
+    }
+
+    const toggle_activity = async (item:any) => {
+        const attempt = await prompt("Enter password: ");
+        if (await authenticate(attempt)){
+            let data = {
+                "activity":item.activity,
+                "password":attempt,
+            }
+            let headers = {
+                headers: {
+                  'Content-Type': 'application/json', // Set the content type of the request
+                },
+            }
+            let proxy = "http://localhost:8080";
+            await axios.post(proxy + "/api/toggle", data, headers)
+            window.location.reload();
+        }
+        else{
+            alert("Authentication Failed!")
+            console.log("no")
+        }
+
+
     }
 
     const submit_form = async (event) => {
@@ -76,7 +117,7 @@ const Table : React.FC = () => {
         <div className="table-container">
             
 
-            <Buttons handleClear={clear_stage} handleSubmit = {submit_form}/>
+            <Buttons handleClear={clear_stage} handleSubmit = {submit_form} handleTrack = {toggle_track}/>
 
             
 
@@ -90,7 +131,7 @@ const Table : React.FC = () => {
                 <tbody>
 
                 {table_data.map((item, index) => (
-                    <Row data={item} staged_activities={staged_activities} onClick={()=>{stage_activity(item)}}/>
+                    <Row data={item} staged_activities={staged_activities} onClick={()=>{if (active){toggle_activity(item)} else{stage_activity(item)}}}/>
                 ))}
 
                 </tbody>

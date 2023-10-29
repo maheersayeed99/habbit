@@ -31,6 +31,28 @@ const get_disabled = (req: Request, res : Response) => {
     })
 }
 
+
+const toggle_active = (req: Request, res : Response) => {
+    return new Promise((resolve, reject) => {
+        const entry_to_update = req.body.activity;
+        const password = req.body.password;
+
+        console.log(entry_to_update);
+        resolve(daily_status_model.toggle_active(entry_to_update, password));
+    })
+
+    .then((result) => {
+        console.log("Done");
+        console.log(result);
+        res.json(result)
+    })
+
+    .catch((error) => {
+        console.log(error);
+        return error;
+    })
+}
+
 const get_todo = (req: Request, res : Response) => {
     return new Promise((resolve, reject) => {
         resolve(daily_status_model.get_todo());
@@ -133,4 +155,4 @@ const authenticate = (req: Request, res: Response) => {
 }
 
 
-export {get_todo, get_streaks, daily_update, update_progress, clean_table, get_all, authenticate, get_disabled};
+export {get_todo, get_streaks, daily_update, update_progress, clean_table, get_all, authenticate, get_disabled, toggle_active};

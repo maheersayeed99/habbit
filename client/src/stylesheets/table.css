@@ -164,6 +164,12 @@ width:25%;
     display: flex;
     float: left;
 }
+
+.Activate_Button {
+    width: 20%;
+    display: flex;
+    float: left;
+}
 .Empty_Space {
     width: 20%;
     display: flex;
@@ -188,6 +194,13 @@ button {
     padding: 10px;
 }
 
+.Activate_Button button {
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+}
+
 .Clear_Button:hover button{
     width: 100%;
     transition: width 0.3s;
@@ -202,6 +215,15 @@ button {
     cursor: pointer;
 }
 
+.Activate_Button:hover button{
+    scale: 110%;
+    transition: scale 0.3s;
+    background-color: gold;
+    cursor: pointer;
+}
+.active.Activate_Button button{
+    background-color: gold;
+}
 
 @keyframes pulse {
     0% {

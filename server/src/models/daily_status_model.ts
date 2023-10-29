@@ -45,6 +45,26 @@ class daily_status_model{
         });
     }
 
+    static toggle_active = (entry:string, password:string) => {
+        
+        const current_query = `UPDATE daily_status 
+        SET active = not active 
+        WHERE activity = '${entry}';`;
+
+        if (password == process.env.update_password){
+            return pool.query(current_query)
+            .then((result: Pool_Query) => {
+                console.log('successful query');
+                return result.rows;
+            })
+            .catch((error: Error) => {
+                console.log(error);
+                return error;
+            });
+        }
+        
+    }
+
 
     static update_entry_list = async (curr_activity :string, password : string) => {
 

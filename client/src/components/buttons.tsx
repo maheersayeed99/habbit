@@ -1,4 +1,5 @@
 import React from "react";
+import { useState, useEffect} from "react";
 import "../stylesheets/table.css"
 
 const Buttons = (props) => {
@@ -14,6 +15,12 @@ const Buttons = (props) => {
             await props.handleSubmit();
         }
     }
+
+    const handleTrack = async () =>{
+        if (props.handleTrack) {
+            await props.handleTrack();
+        }
+    }
     
     
     return (
@@ -22,8 +29,11 @@ const Buttons = (props) => {
             <div className="Clear_Button">
                 <button onClick={handleClear}>Clear</button>
             </div>
-            <div className="Empty_Space">
+
+            <div className={`Activate_Button`}>
+                <button onClick={handleTrack}>Track</button>
             </div>
+            
             <div className="Submit_Button">
                 <button onClick={handleSubmit}>Submit</button>
             </div>

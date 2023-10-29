@@ -6,7 +6,8 @@ const authenticate = async (attempt: string) => {
         attempt: attempt,
     }
     console.log(data)
-    const response = await axios.post("/api/authenticate", data, {
+    let proxy = "http://localhost:8080"
+    const response = await axios.post(proxy+"/api/authenticate", data, {
         headers: {
           'Content-Type': 'application/json', // Set the content type of the request
         },
