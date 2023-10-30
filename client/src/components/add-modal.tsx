@@ -8,11 +8,17 @@ import {authenticate} from "../utilities/helper.ts"
 // import path from "path"
 // require('dotenv').config()
 
-const AddModal : React.FC = () => {
+const AddModal : React.FC = (props) => {
 
+    const hide_modal = async () => {
+        console.log("clicked");
+        if (props.cancel){
+            await props.cancel()
+        }
+    }
     
     return (
-        <div className="full-modal">
+        <div className={`full-modal ${ props.active ? "" : "disabled" }`}>
             <div className="modal-box">
                 <div className="modal-content">
                     
@@ -42,7 +48,7 @@ const AddModal : React.FC = () => {
                         <button>Add</button>
                     </div>
                     <div className="cancel-button">
-                        <button>Cancel</button>
+                        <button onClick={hide_modal}>Cancel</button>
                     </div>
                 </div>
 

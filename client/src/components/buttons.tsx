@@ -21,6 +21,19 @@ const Buttons = (props) => {
             await props.handleTrack();
         }
     }
+
+    const handleDelete = async () =>{
+        if (props.handleDelete) {
+            await props.handleDelete();
+        }
+    }
+
+
+    const handleAdd = async () =>{
+        if (props.handleAdd) {
+            await props.handleAdd();
+        }
+    }
     
     
     return (
@@ -31,7 +44,7 @@ const Buttons = (props) => {
             </div>
 
             <div className="Delete_Button">
-                <button onClick={handleClear}>-</button>
+                <button onClick={handleDelete}>-</button>
             </div>
 
             <div className={`Activate_Button`}>
@@ -39,7 +52,7 @@ const Buttons = (props) => {
             </div>
 
             <div className="Add_Button">
-                <button onClick={handleClear}>+</button>
+                <button onClick={handleAdd}>+</button>
             </div>
             
             <div className="Submit_Button">

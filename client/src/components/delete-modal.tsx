@@ -8,21 +8,20 @@ import {authenticate} from "../utilities/helper.ts"
 // import path from "path"
 // require('dotenv').config()
 
+
+
 const DeleteModal : React.FC = (props) => {
 
-    const [active, activate] = useState(props.active ? "" : "disabled")
+    const hide_modal = async () => {
+        console.log("clicked");
+        if (props.cancel){
+            await props.cancel()
+        }
+    }
 
-    // if (props.active){
-    //     if (props.active == true){
-    //         activate("")
-    //     }
-    //     else if(props.active == false){
-    //         activate("disabled")
-    //     }
-    // }
     
     return (
-        <div className={`full-modal ${active}`}>
+        <div className={`full-modal ${ props.active ? "" : "disabled" }`}>
             <div className="modal-box">
                 <div className="modal-content">
                     
@@ -38,7 +37,7 @@ const DeleteModal : React.FC = (props) => {
                         <button>Remove</button>
                     </div>
                     <div className="cancel-button">
-                        <button>Cancel</button>
+                        <button onClick={hide_modal}>Cancel</button>
                     </div>
                 </div>
 

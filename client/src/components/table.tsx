@@ -25,9 +25,7 @@ const Table : React.FC = () => {
     const [delete_modal_active, delete_modal_toggle] = useState(false)
 
     const updateTable = async () => {
-        // console.log(process.env.proxy)
         
-        // let proxy = "";
         const table_response = await axios.get(proxy + "/api/main")
         console.log(table_response)
         console.log(await table_response.data);
@@ -87,9 +85,30 @@ const Table : React.FC = () => {
 
     }
 
+    const show_delete_modal = async () => {
+        await delete_modal_toggle(true)
+        console.log("done")
+    }
+
+
+    const hide_delete_modal = async () => {
+        await delete_modal_toggle(false)
+        console.log("done")
+    }
+
+    const show_add_modal = async () => {
+        await add_modal_toggle(true)
+        console.log("done")
+    }
+
+
+    const hide_add_modal = async () => {
+        await add_modal_toggle(false)
+        console.log("done")
+    }
+
     const submit_form = async (event) => {
 
-        
         // event.preventDefault();
         const attempt = await prompt("Enter password: ");
         if (await authenticate(attempt)){
@@ -122,10 +141,10 @@ const Table : React.FC = () => {
 
     return (
         <div className="table-container">
-            {/* <AddModal></AddModal> */}
-            <DeleteModal active={delete_modal_active}></DeleteModal>
+            <AddModal active={add_modal_active} cancel={hide_add_modal}></AddModal>
+            <DeleteModal active={delete_modal_active} cancel={hide_delete_modal}></DeleteModal>
 
-            <Buttons handleClear={clear_stage} handleSubmit = {submit_form} handleTrack = {toggle_track}/>
+            <Buttons handleClear={clear_stage} handleSubmit = {submit_form} handleTrack = {toggle_track} handleDelete = {show_delete_modal}  handleAdd = {show_add_modal}/>
 
             
 
