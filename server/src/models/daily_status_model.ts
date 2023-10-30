@@ -157,6 +157,46 @@ class daily_status_model{
         });
     }
 
+    static add_row = (data:any) => {
+        const current_query = `INSERT INTO daily_status (activity, frequency, span, streak)
+                                VALUES ('${data.activity}', ${data.frequency}, ${data.span}, ${data.streak})
+                                ON CONFLICT (activity)
+                                DO UPDATE SET frequency = ${data.frequency}, span = ${data.span}, streak = ${data.streak}
+                                WHERE daily_status.activity = '${data.activity}';`;
+        
+        if (data.password == process.env.update_password){
+            return pool.query(current_query)
+            .then((result: Pool_Query) => {
+                console.log('successful query');
+                return result.rows;
+            })
+            .catch((error: Error) => {
+                console.log(error);
+                return error;
+            });
+        }
+    }
+
+
+    static delete_row = (data:any) => {
+        const current_query = `DELETE FROM daily_status
+                                WHERE activity = '${data.activity}';`;
+        
+        if (data.password == process.env.update_password){
+            return pool.query(current_query)
+            .then((result: Pool_Query) => {
+                console.log('successful query');
+                return result.rows;
+            })
+            .catch((error: Error) => {
+                console.log(error);
+                return error;
+            });
+        }
+    }
+
+
+
     static get_todo = () => {
         var current_query = `SELECT * FROM daily_status WHERE completed_today = false ORDER BY completed, streak DESC;`;
 

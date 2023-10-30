@@ -107,6 +107,122 @@ const Table : React.FC = () => {
         console.log("done")
     }
 
+    const clean_activity = (data:any) => {
+        data.activity = data.activity.trim().toLowerCase()
+        if (data.activity == ""){
+            return false
+        }
+        return true
+    }
+
+    const clean_frequency = (data:any) => {
+        let num = data.frequency;
+        if (data.frequency == ""){
+            return false
+        }
+        else if (parseInt(data.frequency) < 0){
+            return false
+        }
+        return true
+    }
+
+    const clean_span = (data:any) => {
+        let num = data.span;
+        if (data.span == ""){
+            return false
+        }
+        else if (parseInt(data.span) < 0){
+            return false
+        }
+        return true
+    }
+
+    const clean_streak = (data:any) => {
+        let num = data.streak;
+        if (data.streak == ""){
+            return false
+        }
+        else if (parseInt(data.streak) < 0){
+            return false
+        }
+        return true
+    }
+
+    const add_row = async () => {
+        const attempt = await prompt("Enter password: ");
+        
+        let data = {
+            "activity":await document.getElementById("activity_field")?.value,
+            "frequency":await document.getElementById("frequency_field")?.value,
+            "span":await document.getElementById("span_field")?.value,
+            "streak":await document.getElementById("streak_field")?.value,
+            "password":attempt,
+        }
+
+        let headers = {
+            headers: {
+              'Content-Type': 'application/json', // Set the content type of the request
+            },
+        }
+
+        console.log(data)
+
+        if (clean_activity(data) && clean_frequency(data) && clean_span(data) && clean_streak(data)){
+            console.log(data)
+
+            if (await authenticate(attempt)){
+                await axios.post(proxy + "/api/add_row", data, headers)
+                window.location.reload();
+            }
+            else{
+                alert("Authentication Failed!")
+                console.log("no")
+            }
+
+        }
+        else{
+            alert("Invalid Input! (Field cannot be empty, no negatives etc)")
+        }
+        
+
+    }
+
+    const delete_row = async () => {
+        const attempt = await prompt("Enter password: ");
+
+        let data = {
+            "activity":await document.getElementById("remove_field")?.value,
+            "password":attempt,
+        }
+
+        let headers = {
+            headers: {
+              'Content-Type': 'application/json', // Set the content type of the request
+            },
+        }
+
+        console.log(data)
+
+        if (clean_activity(data)){
+            console.log(data)
+            
+            if (await authenticate(attempt)){
+                await axios.post(proxy + "/api/delete_row", data, headers)
+                window.location.reload();
+            }
+            else{
+                alert("Authentication Failed!")
+                console.log("no")
+            }
+
+        }
+        else{
+            alert("Invalid Input! (Field cannot be empty)")
+        }
+
+        
+    }
+
     const submit_form = async (event) => {
 
         // event.preventDefault();
@@ -141,8 +257,8 @@ const Table : React.FC = () => {
 
     return (
         <div className="table-container">
-            <AddModal active={add_modal_active} cancel={hide_add_modal}></AddModal>
-            <DeleteModal active={delete_modal_active} cancel={hide_delete_modal}></DeleteModal>
+            <AddModal active={add_modal_active} cancel={hide_add_modal} submit={add_row}></AddModal>
+            <DeleteModal active={delete_modal_active} cancel={hide_delete_modal} submit={delete_row}></DeleteModal>
 
             <Buttons handleClear={clear_stage} handleSubmit = {submit_form} handleTrack = {toggle_track} handleDelete = {show_delete_modal}  handleAdd = {show_add_modal}/>
 

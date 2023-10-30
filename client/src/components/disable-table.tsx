@@ -40,7 +40,7 @@ const DisableTable : React.FC = () => {
                         'Content-Type': 'application/json', // Set the content type of the request
                         },
                     }
-                    await axios.post("/api/toggle", data, headers)
+                    await axios.post(proxy+ "/api/toggle", data, headers)
                     window.location.reload();
                 }
                 else{

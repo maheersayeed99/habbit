@@ -154,5 +154,45 @@ const authenticate = (req: Request, res: Response) => {
 
 }
 
+const add_row = (req: Request, res: Response) => {
+    
+    return new Promise((resolve, reject) => {
+        resolve(daily_status_model.add_row(req.body));
+    })
 
-export {get_todo, get_streaks, daily_update, update_progress, clean_table, get_all, authenticate, get_disabled, toggle_active};
+    .then((result) => {
+        console.log("Done");
+        console.log(result);
+        res.json(result)
+    })
+
+    .catch((error) => {
+        console.log(error);
+        return error;
+    })
+
+}
+
+
+const delete_row = (req: Request, res: Response) => {
+    
+    return new Promise((resolve, reject) => {
+        resolve(daily_status_model.delete_row(req.body));
+    })
+
+    .then((result) => {
+        console.log("Done");
+        console.log(result);
+        res.json(result)
+    })
+
+    .catch((error) => {
+        console.log(error);
+        return error;
+    })
+
+}
+
+
+
+export {get_todo, get_streaks, daily_update, update_progress, clean_table, get_all, authenticate, get_disabled, toggle_active, add_row, delete_row};

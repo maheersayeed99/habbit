@@ -16,6 +16,13 @@ const AddModal : React.FC = (props) => {
             await props.cancel()
         }
     }
+
+    const submit_content = async () => {
+        console.log("clicked");
+        if (props.submit){
+            await props.submit()
+        }
+    }
     
     return (
         <div className={`full-modal ${ props.active ? "" : "disabled" }`}>
@@ -24,28 +31,26 @@ const AddModal : React.FC = (props) => {
                     
                     <div className="modal-input">
                         <div className="modal-text">Activity</div>
-                        <div className="modal-field"><input type="text" id="myTextField" name="myTextField"></input></div>
+                        <div className="modal-field"><input type="text" id="activity_field" name="myTextField"></input></div>
                     </div>
                     <div className="modal-input">
                         <div className="modal-text">Frequency</div>
-                        <div className="modal-field"><input type="number" id="myTextField" name="myTextField"></input></div>
+                        <div className="modal-field"><input type="number" id="frequency_field" name="myTextField"></input></div>
                     </div>
                     <div className="modal-input">
                         <div className="modal-text">Span</div>
-                        <div className="modal-field"><input type="number" id="myTextField" name="myTextField"></input></div>
+                        <div className="modal-field"><input type="number" id="span_field" name="myTextField"></input></div>
                     </div>
                     <div className="modal-input">
                         <div className="modal-text">Streak</div>
-                        <div className="modal-field"><input type="number" id="myTextField" name="myTextField"></input></div>
+                        <div className="modal-field"><input type="number" id="streak_field" name="myTextField"></input></div>
                     </div>
-
-                    
 
                 </div>
                 
                 <div className="button-shelf">
                     <div className="add-button">
-                        <button>Add</button>
+                        <button onClick={submit_content}>Add</button>
                     </div>
                     <div className="cancel-button">
                         <button onClick={hide_modal}>Cancel</button>
