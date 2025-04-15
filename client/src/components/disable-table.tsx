@@ -5,13 +5,12 @@ import { Buttons } from "./buttons.tsx";
 import { useState, useEffect} from "react";
 import axios from "axios"
 import {authenticate} from "../utilities/helper.ts"
-// import path from "path"
-// require('dotenv').config()
+import {PROXY_URL} from "../config.ts"
 
-let proxy = "http://localhost:8080"
+let proxy = PROXY_URL;
 
 const DisableTable : React.FC = () => {
-
+    
     const [table_data, get_data] = useState([])
 
     const updateTable = async () => {
@@ -54,7 +53,7 @@ const DisableTable : React.FC = () => {
 
     useEffect(()=>{
         updateTable();
-    },[])
+    },[proxy])
 
     return (
         <table className="disable-table">

@@ -21,9 +21,7 @@ app.use(express.static(path.join(__dirname, "../../../client/build")));
 const port = process.env.PORT || 8080;
 app.listen(port);
 console.log("app running");
-
 app.use("/api", router);
-
 // const update_hour : number = 9;
 // const update_minute : number = 30;
 

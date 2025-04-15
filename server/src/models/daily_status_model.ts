@@ -289,33 +289,42 @@ class daily_status_model{
             console.log("query successful");
             // const todo_array = new Array<string>;
             result.rows.forEach((element) => {
-                element.days_left -= 1;
                 
-                if (element.days_left < 0) {
-                    element.streak = 0;
-                    element.days_left = 0;
-                }
-                else if (element.completed) {
-                    element.streak += 1;
+                if (element.completed && element.span == 0) {  
+                    const delete_query = `DELETE FROM daily_status
+                                WHERE activity = '${element.activity}';`;
+                    pool.query(delete_query);
+
+                } else {
+                
+                    element.days_left -= 1;
                     
+                    if (element.days_left < 0) {
+                        element.streak = 0;
+                        element.days_left = 0;
+                    }
+                    else if (element.completed) {
+                        element.streak += 1;
+                        
+                    }
+                    if (element.days_left == 0){
+                        element.completed = false;
+                    }
+
+                    element.progress = 0;
+                    element.max_streak = Math.max(element.max_streak, element.streak);
+
+                    var new_query = `UPDATE daily_status 
+                                        SET streak = ${element.streak},
+                                            progress = ${element.progress},
+                                            days_left = ${element.days_left},
+                                            completed = ${element.completed},
+                                            completed_today = false,
+                                            max_streak = ${element.max_streak}
+                                        WHERE activity = '${element.activity}';`;
+
+                    pool.query(new_query);
                 }
-                if (element.days_left == 0){
-                    element.completed = false;
-                }
-
-                element.progress = 0;
-                element.max_streak = Math.max(element.max_streak, element.streak);
-
-                var new_query = `UPDATE daily_status 
-                                    SET streak = ${element.streak},
-                                        progress = ${element.progress},
-                                        days_left = ${element.days_left},
-                                        completed = ${element.completed},
-                                        completed_today = false,
-                                        max_streak = ${element.max_streak}
-                                    WHERE activity = '${element.activity}';`;
-
-                pool.query(new_query);
             })
             return result.rows;
         })

@@ -7,14 +7,12 @@ import axios from "axios"
 import {authenticate} from "../utilities/helper.ts"
 import { AddModal } from "./add-modal.tsx";
 import { DeleteModal } from "./delete-modal.tsx";
-// import path from "path"
-// require('dotenv').config()
+import {PROXY_URL} from "../config.ts"
 
-let proxy = "http://localhost:8080"
-// let proxy = "https://habbit.azurewebsites.net"
+let proxy = PROXY_URL;
 
 const Table : React.FC = () => {
-
+    
     const [table_data, get_data] = useState([])
 
     const [staged_activities, stage] = useState([]);

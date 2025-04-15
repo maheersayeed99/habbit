@@ -7,7 +7,7 @@
     "start_local": "nodemon server/src/index.ts",
     "start": "node dist/server/src/index.js",
     "build": "tsc",
-    "prepare":"npm run build && cd client && npm i && npm run build && rm -R node_modules"
+    "prepare":"npm run build && cd client && npm i && npm run build && rm -R node_modules && rm -R ../node_modules"
   },
   "keywords": [],
   "author": "",

@@ -1,7 +1,8 @@
 
 import axios from "axios";
+import {PROXY_URL} from "../config.ts"
 
-let proxy = "http://localhost:8080"
+let proxy = PROXY_URL;
 
 const authenticate = async (attempt: string) => {
     const data = {
